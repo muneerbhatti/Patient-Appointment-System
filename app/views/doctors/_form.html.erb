@@ -1,0 +1,53 @@
+<%=form_with model: @doctor do |form|  %>
+<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Name, class:'mb-3' %>
+			<%=form.text_field :Name , class:'form-control form-control-lg' %>
+			 <% @doctor.errors.full_messages_for(:Name).each do |message|  %>
+			   <p class="text-danger"><%= message %></p>
+			 <% end %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Email, class:'mb-3' %>
+			<%=form.text_field :Email, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Contect#, class:'mb-3' %>
+			<%=form.text_field :ConectNo , class:'form-control form-control-lg' %>
+			 <% @doctor.errors.full_messages_for(:ConectNo).each do |message|  %>
+			   <p class="text-danger"><%= message %></p>
+			 <% end %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Specialization, class:'mb-3' %>
+			<%=form.text_field :Specialization, class:'form-control form-control-lg' %>
+			 <% @doctor.errors.full_messages_for(:Specialization).each do |message|  %>
+			   <p class="text-danger"><%= message %></p>
+			 <% end %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Exprince, class:'mb-3' %>
+			<%=form.text_field :Exprince_year , class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Address, class:'mb-3' %>
+			<%=form.text_field :Address , class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<%=form.submit class:'btn btn-primary btn-lg' %>
+		<%=link_to 'Back to doctor', doctors_path,class:'btn btn-info btn-lg' %>
+	</div>
+</div>
+<% end %>
