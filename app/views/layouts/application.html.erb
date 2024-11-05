@@ -25,11 +25,22 @@
     <div class="wrapper">
      <%=render 'shared/header' %>
      <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+      <p class="alert"><%= alert %></p>
 
      <%=render 'shared/aside' %>
+   </div>
+
+   <div class='content-body'>
     <%= yield %>
+  </div>
      <%=render 'shared/footer' %>
     
   </body>
 </html>
+
+
+<style type="text/css">
+  .content-body{
+    margin-left: 300px;
+  }
+</style>

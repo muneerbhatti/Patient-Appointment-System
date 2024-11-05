@@ -20,6 +20,6 @@
  *= require jquery-jvectormap-1.2.2.css
  *= require datepicker3.css
  *= require daterangepicker-bs3.css
- *=require bootstrap3-wysihtml5.min.css
+ *= require bootstrap3-wysihtml5.min.css
 
  */
