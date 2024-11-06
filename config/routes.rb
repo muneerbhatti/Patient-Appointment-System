@@ -3,4 +3,5 @@ Rails.application.routes.draw do
  root 'appointment#index'
  resources :doctors
  resources :patients
+ resources :tokens
 end
