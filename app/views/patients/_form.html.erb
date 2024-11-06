@@ -1,4 +1,4 @@
-<%form_with model: @patient do |form| %>
+<%=form_with model: @patient do |form| %>
 <div class="row">
 	<div class="col-lg-5">
 		<div class="form-group">
@@ -6,6 +6,39 @@
 			<%=form.text_field :Name, class:'form-control form-control-lg' %>
 		</div>
 	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :CNIC, class:'mb-3' %>
+			<%=form.text_field :CNIC, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :PhoneNo, class:'mb-3' %>
+			<%=form.text_field :PhoneNo, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Gender, class:'mb-3' %>
+			<%=form.text_field :Gender, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Address, class:'mb-3' %>
+			<%=form.text_field :Address, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :date_of_birth, class:'mb-3' %>
+			<%=form.text_field :date_of_birth, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<%=form.submit class:'btn btn-primary btn-lg' %>
+		<%=link_to "Back to patient",patients_path, class:'btn btn-info btn-lg' %>
+	</div>
 </div>
-<h1>muneer</h1>
 <%end%>
