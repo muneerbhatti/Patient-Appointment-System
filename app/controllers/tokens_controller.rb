@@ -17,4 +17,19 @@ class TokensController<ApplicationController
 	def show 
 		@token=Token.find(params[:id])
 	end
+	def edit
+		@token=Token.find(params[:id])
+	end
+	def update
+		@token=Token.find(params[:id])
+		if @token.update(params_token)
+			redirect_to tokens_path,notice:'Token was successfully Updated!!...  '
+		else
+			render :edit
+		end
+	end
+	private
+	def params_token
+		params.require(:token).permit(:Blood_pressure, :Temperature, :Weight, :doctor_id, :patient_id)
+	end
 end

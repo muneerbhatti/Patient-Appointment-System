@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-lg-5">
 		<div class="form-group">
-			<%=form.label :Contect#, class:'mb-3' %>
+			<%=form.label :Contact, class:'mb-3' %>
 			<%=form.text_field :ConectNo , class:'form-control form-control-lg' %>
 			 <% @doctor.errors.full_messages_for(:ConectNo).each do |message|  %>
 			   <p class="text-danger"><%= message %></p>
