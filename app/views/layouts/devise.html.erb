@@ -21,18 +21,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="skin-blue  wysihtml5-supported">
-    <div class="wrapper">
-     <%=render 'shared/header' %>
-     <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
-     <%=render 'shared/aside' %>
-   </div>
-
-   <div class='content-body'>
+  <body>
     <%= yield %>
-    <%=render 'shared/footer' %>
-  </div>
   </body>
 </html>
