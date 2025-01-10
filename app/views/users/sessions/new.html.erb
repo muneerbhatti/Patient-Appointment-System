@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devise Form - Sign In</title>
+  <style>
+    /* General styles for the card */
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #fff;
+    }
+
+    /* Card header */
+    .card-header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 15px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 20px;
+    }
+
+    /* Form input styles */
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    /* Remember me checkbox */
+    .form-check-input {
+      margin-right: 10px;
+    }
+
+    /* Submit button */
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Links below the form */
+    .links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .links a {
+      text-decoration: none;
+      color: #007bff;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">Sign In</div>
+    <div class="card-body">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <!-- Email input -->
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+        </div>
+
+        <!-- Remember me checkbox -->
+        <% if devise_mapping.rememberable? %>
+          <div class="form-group form-check">
+            <%= f.check_box :remember_me, class: 'form-check-input' %>
+            <%= f.label :remember_me, class: 'form-check-label' %>
+          </div>
+        <% end %>
+
+        <!-- Submit button -->
+        <div class="form-group">
+          <%= f.submit "Log in", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <!-- Links for sign up or forgot password -->
+      <div class="links">
+        <%= render "users/shared/links" %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

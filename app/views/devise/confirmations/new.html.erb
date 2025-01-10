@@ -1,16 +1,66 @@
-<h2>Resend confirmation instructions</h2>
+<div class="body">
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-header">
+         <h2 class="text-center">Resend confirmation instructions</h2>
+      </div> 
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),class:'form-control form-control-lg' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        <div class="form-group">
+          <%= f.submit "Resend confirmation instructions",class:'btn btn-lg' %>
+        </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+ 
+        </div>
+      
+    </div>
   </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<style type="text/css">
+  .body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-height: 50px;
+  }
+  .card{
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color:#fff ;
+    margin: 100px;
+  }
+  .card-header{
+    background-color: blue;
+    padding: 5px;
+  }
+  .card-body{
+      
+  }
+  .btn{
+    background-color: blue;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,16 +1,62 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="body">
+<div class="col-lg-5">
+<div class="card">
+  <div class="card-header" >
+    <h2 class="text-center">Forgot your password?</h2>
+  </div>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="form-group">
+    <%= f.label :email ,class:'mx-3' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control form-control-lg' %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="form-group ">
+    <%= f.submit "Send me reset password instructions",class:'btn  ' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+  </div>
+</div>
+</div>
+</div>
+
+
+
+
+<style type="text/css">
+   .body{
+    display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  min-height: 50vh; /* Full viewport height */
+  }
+   .btn{
+    background-color: blue ;
+    
+   }
+  .card{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px;
+    background-color:#fff ;
+  }
+  .card-header{
+    background-color: blue;
+    padding: 6px;
+  }
+  .card-body{
+    
+    font-size: 20px;
+    color: #333;
+  }
+  .text-center{
+    text-align: center;
+    color: black;
+    font-size: 24px;
+  }
+</style>

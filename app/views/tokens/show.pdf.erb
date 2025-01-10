@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            background-color: #fff;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .text-center {
+            text-align: center;
+            color: #343a40;
+        }
+        .table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #e9ecef;
+            font-weight: bold;
+        }
+        .table td {
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center">Token Information</h1>
+            </div>
+        </div>
+    </div>
+    <table class="table table-borderd">
+        <thead>
+            <tr>
+                <th>Name :</th><td><%= @token.patient.Name %></td>
+                <th>CNIC :</th><td><%= @token.patient.CNIC %></td>
+                <th>Phone :</th><td><%= @token.patient.PhoneNo %></td>
+            </tr>
+            <tr>
+                <th>Blood Pressure</th><td><%= @token.Blood_pressure %></td>
+                <th>Temperature</th><td><%= @token.Temperature %></td>
+                <th>Weight</th><td><%= @token.Weight %></td>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>

@@ -16,6 +16,14 @@ class TokensController<ApplicationController
 	end
 	def show 
 		@token=Token.find(params[:id])
+		authorize(@token)
+
+		respond_to do |format|
+	      format.html
+	      format.pdf do
+	        render pdf: "file_name"   # Excluding ".pdf" extension.
+	      end
+	    end
 	end
 	def edit
 		@token=Token.find(params[:id])
@@ -27,6 +35,9 @@ class TokensController<ApplicationController
 		else
 			render :edit
 		end
+	end
+	def print
+		@token=Token.find(params[:id])
 	end
 	private
 	def params_token

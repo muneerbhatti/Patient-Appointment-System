@@ -30,10 +30,45 @@
                 <i class="fa fa-dashboard"></i> <span>Doctors</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Doctors v1</a></li>
-                <li><a href="index2.html"><i class="fa fa-circle-o"></i> Doctor v2</a></li>
+                <li class="active"><a href="<%=new_doctor_path%>"><i class="fa fa-circle-o"></i> New Doctor</a></li>
+                <li><a href="<%=doctors_path%>"><i class="fa fa-circle-o"></i> Doctor(s)</a></li>
               </ul>
             </li>
+            <li>
+              <a href="<%= new_doctor_path %>">
+                <i class="fa fa-th"></i> <span>Doctor</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Patients</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="<%=new_patient_path%>"><i class="fa fa-circle-o"></i> New Patient</a></li>
+                <li><a href="<%=patients_path%>"><i class="fa fa-circle-o"></i> Patient(s)</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="<%= new_patient_path %>">
+                <i class="fa fa-th"></i> <span>Patien</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Token</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="<%=new_token_path%>"><i class="fa fa-circle-o"></i> New Token</a></li>
+                <li><a href="<%=tokens_path%>"><i class="fa fa-circle-o"></i> token(s)</a></li>
+              </ul>
+            </li>
+            <li>
+            <li>
+            <a href="<%= new_token_path %>">
+                <i class="fa fa-th"></i> <span>Token</span> <small class="label pull-right bg-green">new</small>
+            </a>
+            </li>              
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-files-o"></i>
@@ -46,11 +81,6 @@
                 <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
                 <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
               </ul>
-            </li>
-            <li>
-              <a href="<%= new_doctor_path %>">
-                <i class="fa fa-th"></i> <span>Doctor</span> <small class="label pull-right bg-green">new</small>
-              </a>
             </li>
             <li class="treeview">
               <a href="#">
