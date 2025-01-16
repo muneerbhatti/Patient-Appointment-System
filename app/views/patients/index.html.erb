@@ -1,11 +1,29 @@
 <div class="col-lg-12">
-	<div class="card">
+	<div class="card ">
 		<div class="card-body">
 			<h1 class="text-center">Patient Infermation</h1>
 		</div>
 		 <p class="notice"><%= notice %></p>
 	</div>
-	<%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
+	
+	<div class="col-lg-4 text-center">
+    <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
+        <div class="input-group justify-content-center">
+            <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
+            <span class="input-group-btn">
+                <%= form.submit "Search", class: "btn btn-primary" %>
+            </span>
+        </div>
+    <% end %>
+</div>
+
+
+   <br>
+   <div class="abc">
+   	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
+   </div>
+
+	
 	</div>
 	<table class="table table-borderd">
 		<thead>
@@ -39,3 +57,14 @@
 		</tbody>
 	</table>
 </div>
+
+
+
+<style>
+
+	.abc{
+		padding: 20px;
+	}
+
+
+</style>

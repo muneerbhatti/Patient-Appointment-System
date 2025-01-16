@@ -1,0 +1,45 @@
+<%=form_with model:@payment do |form| %> 
+<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Amount, class:'mb-3' %>
+			<%=form.text_field :amount, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Payment_type, class:'mb-3' %>
+			<%=form.text_field :payment_type, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Details, class:'mb-3' %>
+			<%=form.text_field :detail, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Patient_ID, class:'mb-3' %>
+			<%=form.text_field :patient_id, class:'form-control form-control-lg' %>
+		</div>
+		
+	</div>
+	<div class="col-lg-5">
+		
+		<%=form.submit class:'abc btn btn-primaty btn-lg' %>
+		<%=link_to "Back Payment",payments_path,class:'ab btn btn-primaty btn-lg' %>
+		
+	</div>
+	
+<%end%>
+
+
+<style type="text/css">
+	.abc{
+		background-color: #7CFC00;
+	}
+	.ab{
+		background-color: #FFFF00;
+	}
+</style>

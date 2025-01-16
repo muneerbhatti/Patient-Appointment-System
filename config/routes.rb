@@ -5,8 +5,11 @@ Rails.application.routes.draw do
       }
 
  root 'appointment#index'
- resources :doctors
+ resources :doctors do 
+  number do
+    get :perception
+  end
  resources :patients
  resources :tokens
- 
+ resources :payments
 end

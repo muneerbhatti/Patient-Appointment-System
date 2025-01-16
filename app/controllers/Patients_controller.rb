@@ -2,7 +2,16 @@ class PatientsController<ApplicationController
      before_action :authenticate_user!
 	def index
 	    @patients=Patient.all
-    end
+        # Retrieve the search parameter, if any
+    if params[:search].present?
+      @patients = Patient.where('Name LIKE ?', "%#{params[:search]}%")
+      @patients = Patient.where('id LIKE ?', "%#{params[:search]}%")
+    else
+      @patients = Patient.all
+     end
+   end
+    
+    
     def new
     	@patient=Patient.new
     end

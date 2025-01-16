@@ -1,0 +1,14 @@
+<div class="col-lg-12">
+	<div class="card">
+		<div class="card-body">
+			<h1 class="text-center">Payment Detial</h1>
+		</div>	
+	</div>
+	<p class="lead"><strong>ID = </strong><%=@payment.id %> </p>
+	<p class="lead"><strong>Amount = </strong><%=@payment.amount%> </p>
+	<p class="lead"><strong>Payment_type = </strong><%=@payment.payment_type %> </p>
+	<p class="lead"><strong>Detail = </strong><%=@payment.detail %> </p>
+	<p class="lead"><strong>Patient_id = </strong><%=@payment.patient_id%> </p>
+	<%=link_to 'Back to patient',payments_path,class:'btn btn-primary btn-lg ' %>
+	<%=link_to 'Edit patient',edit_payment_path,class:'btn btn-info btn-lg ' %>
+	</div>

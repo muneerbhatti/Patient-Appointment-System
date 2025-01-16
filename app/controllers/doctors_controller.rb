@@ -2,6 +2,12 @@ class DoctorsController<ApplicationController
 	before_action :set_doctor, only: [:show, :update, :edit, :update, :delete, :destroy ]
 	def index
 		@doctors = Doctor.all
+		if params[:search].present?
+			@doctors=Doctor.where('name LIKE?',"%#{params[:search]}%")
+			@doctors=Doctor.where('id LIKE?',"%#{params[:search]}%")
+		else
+			@doctor=Doctor.all
+		end
 	end
 	def new
 		@doctor = Doctor.new
@@ -37,6 +43,10 @@ class DoctorsController<ApplicationController
         if @doctor.destroy 
         	redirect_to doctors_path,notice: 'Doctor was successfully deleted.'
         end
+	end
+	def perception
+		@doctor=Doctor.find(params[:id])
+		redirect_to doctors_path
 	end
 	private
 	def set_doctor

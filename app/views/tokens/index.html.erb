@@ -5,8 +5,20 @@
 		</div>
 		 <p class="notice"><%= notice %></p>
 	</div>
-	<%=link_to 'New token',new_token_path, class:'btn btn-primary btn-lg' %>
+	<div class="col-lg-5">
+		<%=form_with(url:tokens_path,method: :get, local: true, class:'search-form') do |form|%>
+		<div class="input-group ">
+			<%=form.text_field :search, placeholder: "search Token",class:'form-control' %>
+			<span class="input-group-btn">
+				<%=form.submit "search",class:'btn btn-primary' %>
+			</span>
+		</div>
+		<%end%>
 	</div>
+	<div class="abc">
+		<%=link_to 'New token',new_token_path, class:'btn btn-primary btn-lg' %>
+	</div>
+		</div>
 	<table class="table table-borderd">
 		<thead>
 			<tr>
@@ -17,15 +29,17 @@
 				<th>Doctor</th>
 				<th>Patient</th>
 				
+				
 			</tr>
 		</thead>
 		<tbody>
 			<% @tokens.each do |token| %>
 			<tr>
 				<td><%=token.id %></td>
-				<td><%=token.Blood_pressure %></td>
-				<td><%=token.Temperature %></td>
-				<td><%=token.Weight %></td>
+				<td><%=token.Blood_pressure %>  mmHg</td>
+				<td><%=token.Temperature %>  °F</td>
+				<td><%=token.Weight %> kg</td>
+
 				<td><a href="<%=doctor_path(token.doctor.id)%>"><%=token.doctor_id%>#<%=token.doctor.Name%></a></td>
 				<td><a href="<%=patient_path(token.patient.id)%>"><%=token.patient_id%>#<%=token.patient.Name%></a></td>
 				
@@ -40,3 +54,12 @@
 		</tbody>
 	</table>
 </div>
+
+
+<style>
+
+	.abc{
+		padding: 34px;
+	}
+
+</style>
