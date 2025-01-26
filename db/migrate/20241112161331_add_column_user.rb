@@ -1,6 +1,5 @@
 class AddColumnUser < ActiveRecord::Migration[7.2]
   def change
-    add_column :users, :user_id,:integer
-    add_column :users, :user_type, :string
+    add_reference :users, :userable, polymorphic: true, index: true
   end
 end

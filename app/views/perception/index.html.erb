@@ -1,0 +1,23 @@
+<div class="card">
+	<div class="card-body">
+		<h1 class="text-center">Perception Details</h1>
+	</div>
+	<table class="table table-border">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Formula</th>
+			</tr>
+		</thead>
+		<tbody>
+		 <%@Perception.each do |perception| %>
+		 <tr>
+		 	<td><%=percepton.name%></td>
+		 	<td><%=percepton.type%></td>
+		 	<td><%=percepton.formula%></td>
+		 </tr>
+		 <%end%>
+		</tbody>
+	</table>
+</div>

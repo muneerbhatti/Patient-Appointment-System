@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_18_162004) do
   create_table "doctors", force: :cascade do |t|
     t.string "Name"
     t.string "Email"
@@ -43,6 +43,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
     t.index ["patient_id"], name: "index_payments_on_patient_id"
   end
 
+  create_table "perceptions", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "formula"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tokens", force: :cascade do |t|
     t.string "Blood_pressure"
     t.string "Temperature"
@@ -73,10 +81,11 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
-    t.integer "user_id"
-    t.string "user_type"
+    t.string "userable_type"
+    t.integer "userable_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["userable_type", "userable_id"], name: "index_users_on_userable"
   end
 
   add_foreign_key "payments", "patients"

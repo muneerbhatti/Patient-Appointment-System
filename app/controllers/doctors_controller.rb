@@ -44,10 +44,7 @@ class DoctorsController<ApplicationController
         	redirect_to doctors_path,notice: 'Doctor was successfully deleted.'
         end
 	end
-	def perception
-		@doctor=Doctor.find(params[:id])
-		redirect_to doctors_path
-	end
+	
 	private
 	def set_doctor
 		@doctor=Doctor.find(params[:id])
