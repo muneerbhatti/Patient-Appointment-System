@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_18_162004) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_05_173609) do
   create_table "doctors", force: :cascade do |t|
     t.string "Name"
     t.string "Email"
@@ -43,12 +43,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_18_162004) do
     t.index ["patient_id"], name: "index_payments_on_patient_id"
   end
 
-  create_table "perceptions", force: :cascade do |t|
+  create_table "prescriptions", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "category"
     t.string "formula"
+    t.integer "doctor_id", null: false
+    t.integer "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_prescriptions_on_doctor_id"
+    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -89,6 +93,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_18_162004) do
   end
 
   add_foreign_key "payments", "patients"
+  add_foreign_key "prescriptions", "doctors"
+  add_foreign_key "prescriptions", "patients"
   add_foreign_key "tokens", "doctors"
   add_foreign_key "tokens", "patients"
 end

@@ -1,3 +1,0 @@
-class PerceptionController<ApplicationController
-
-end

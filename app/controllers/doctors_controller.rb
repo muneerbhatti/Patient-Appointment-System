@@ -1,4 +1,5 @@
 class DoctorsController<ApplicationController
+	layout 'doctors'
 	before_action :set_doctor, only: [:show, :update, :edit, :update, :delete, :destroy ]
 	def index
 		@doctors = Doctor.all
@@ -16,6 +17,7 @@ class DoctorsController<ApplicationController
 		@doctor=Doctor.new(Name: params[:doctor][:Name],Email: params[:doctor][:Email],ConectNo: params[:doctor][:ConectNo],Specialization: params[:doctor][:Specialization],
 		 Exprince_year: params[:doctor][:Exprince_year],Address: params[:doctor][:Address])
 		if @doctor.save
+			@doctor.build_user(email:params[:doctor][:Email],password:'123456').save
 			redirect_to doctors_path, notice: 'Doctor was successfully created.'
 		else
 			render :new
@@ -33,7 +35,7 @@ class DoctorsController<ApplicationController
 		end
 	end
 	def show
-		
+	   
 	end
 	def delete
 		

@@ -1,0 +1,11 @@
+<%= form_for  [@doctor, @patient, @prescriptions] do |form| %>
+
+
+<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Type, class:'mb-3' %>
+			<%=form.text_field :category, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+<%end%>

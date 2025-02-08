@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="<%=root_path%>" class="logo"><b>Admin</b>LTE</a>
+  <a href="#" class="logo"><b>Doctor</b>LTE</a>
   <!-- Header Navbar: style can be found in header.less -->
   <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->
@@ -203,7 +203,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="<%= image_url('user2-160x160.jpg') %>" class="user-image" alt="User Image"/>
-            <span class="hidden-xs">Alexander Pierce</span>
+            <span class="hidden-xs"><%=current_user&.userable.Name%></span>
           </a>
          
           <ul class="dropdown-menu">
@@ -248,4 +248,4 @@
       </ul>
     </div>
   </nav>
-</header>
+</header>                                                                                                                                                                 

@@ -1,0 +1,32 @@
+<div class="card">
+	<div class="card-body">
+		<h1 class="text-center">Perscription Details</h1>
+	</div>
+	<%=link_to "new Prescription",   new_doctor_prescription_path,class:'btn btn_primary btn-lg' %>
+	<table class="table table-border">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Formula</th>
+			</tr>
+		</thead>
+		<tbody>
+		 <%@prescriptions.each do |prescription| %>
+		 <tr>
+		 	<td><%=prescription.id %></td>
+		 	<td><%=prescription.name%></td>
+		 	<td><%=prescription.category%></td>
+		 	<td><%=prescription.formula%></td>
+		 </tr>
+		 <%end%>
+		</tbody>
+	</table>
+</div>
+<style type="text/css">
+	.btn_primary{
+		background: blue;
+		color: white;
+	}
+</style>
