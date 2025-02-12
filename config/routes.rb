@@ -5,18 +5,10 @@ Rails.application.routes.draw do
       
     }
 
-  resources :doctors do
-    resources :patients do
-    resources :prescriptions
-    #spelling thek karnay h, ya galt h, the spel ya h
-    # Prescription
-    # aggay kar lo k sub?
-  end
-
-    
-  end
-  
+  resources :doctors 
   resources :patients
-  resources :tokens
+  resources :tokens do
+    resources :prescriptions
+  end
   resources :payments
 end

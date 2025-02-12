@@ -50,7 +50,7 @@
 		        	<%=link_to "Edit", edit_doctor_path(doctor),class:'btn btn-info btn-lg' %>
 		        	<%=link_to 'Show',doctor_path(doctor),class:'btn btn-primary btn-lg' %>
 		        	<%= link_to 'Delete',doctor_path(doctor), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
-		        	 <%= link_to "Prescriptions", doctor_prescriptions_path(@doctor), class: "btn btn-info btn-lg" %>
+		        	 <%= link_to "Prescriptions", token_prescriptions_path(1), class: "btn btn-info btn-lg" %>
 
 
 		        </td>

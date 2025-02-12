@@ -1,5 +1,5 @@
 class Prescription < ApplicationRecord
 	validates :name,  presence:true
-	belongs_to :doctor
-	belongs_to :patient
+	belongs_to :token
+	
 end

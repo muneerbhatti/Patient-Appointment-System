@@ -47,12 +47,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_05_173609) do
     t.string "name"
     t.string "category"
     t.string "formula"
-    t.integer "doctor_id", null: false
-    t.integer "patient_id", null: false
+    t.integer "token_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["doctor_id"], name: "index_prescriptions_on_doctor_id"
-    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
+    t.index ["token_id"], name: "index_prescriptions_on_token_id"
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -93,8 +91,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_05_173609) do
   end
 
   add_foreign_key "payments", "patients"
-  add_foreign_key "prescriptions", "doctors"
-  add_foreign_key "prescriptions", "patients"
+  add_foreign_key "prescriptions", "tokens"
   add_foreign_key "tokens", "doctors"
   add_foreign_key "tokens", "patients"
 end

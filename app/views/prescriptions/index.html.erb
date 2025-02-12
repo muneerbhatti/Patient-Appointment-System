@@ -2,7 +2,7 @@
 	<div class="card-body">
 		<h1 class="text-center">Perscription Details</h1>
 	</div>
-	<%=link_to "new Prescription",   new_doctor_prescription_path,class:'btn btn_primary btn-lg' %>
+	<%=link_to "New Prescription", new_token_prescription_path, class:'btn btn_primary btn-lg' %>
 	<table class="table table-border">
 		<thead>
 			<tr>
@@ -10,6 +10,7 @@
 				<th>Name</th>
 				<th>Type</th>
 				<th>Formula</th>
+				<th>Token</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -19,6 +20,12 @@
 		 	<td><%=prescription.name%></td>
 		 	<td><%=prescription.category%></td>
 		 	<td><%=prescription.formula%></td>
+		 	<td><%=prescription.token_id %></td>
+		 	<td>
+		 		<%= link_to "Edit", edit_token_prescription_path(token_id: prescription.token_id, id: prescription.id), class: 'btn btn_primary btn-lg' %>
+		 		<%=link_to "Show", token_prescription_path(token_id:prescription.token_id,id:prescription.id), class:'btn btn_info btn-lg'%>
+
+		 	</td>
 		 </tr>
 		 <%end%>
 		</tbody>
@@ -27,6 +34,10 @@
 <style type="text/css">
 	.btn_primary{
 		background: blue;
+		color: white;
+	}
+	.btn_info{
+		background: #BBB;
 		color: white;
 	}
 </style>

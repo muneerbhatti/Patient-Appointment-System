@@ -5,9 +5,8 @@ class CreatePrescriptions < ActiveRecord::Migration[7.2]
       t.string :type
       t.string :formula
       
-       t.references :doctor, null: false, foreign_key: true
-       t.references :patient, null: false, foreign_key: true
-      t.timestamps
+       t.references :token, null: false, foreign_key: true
+    t.timestamps
     end
   end
 end
