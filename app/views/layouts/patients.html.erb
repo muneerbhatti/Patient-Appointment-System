@@ -23,16 +23,11 @@
 
   <body class="skin-blue  wysihtml5-supported">
     <div class="wrapper"> 
-     
+         <%=render 'shared/patient_aside' %>
+        <%=render 'shared/patient_nav' %>
    </div>
-
-   <div class='content-body'>
-     <%=render 'shared/patient_aside' %>
-    <%=render 'shared/patient_nav' %>
     
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
+   <div class='content-body'>
     <%= yield %>
     <%=render 'shared/footer' %>
   </div>

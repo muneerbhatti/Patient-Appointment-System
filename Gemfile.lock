@@ -288,6 +288,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
     useragent (0.16.10)
+    vanilla_nested (1.7.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -342,6 +343,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  vanilla_nested
   web-console
   wicked_pdf
   wkhtmltopdf-binary

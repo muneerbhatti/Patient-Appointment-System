@@ -6,7 +6,7 @@
 		 <p class="notice"><%= notice %></p>
 	</div>
 	
-	<div class="col-lg-4 text-center">
+	<div class="col-lg-4 search-bar">
     <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
         <div class="input-group justify-content-center">
             <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
@@ -50,7 +50,7 @@
 		        <td>
 		        	<%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
 		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete', patient_path(patient), method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn btn-info btn-lg'%>
+		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
 		        </td>
 			</tr>
 			<% end %>
@@ -66,5 +66,9 @@
 		padding: 20px;
 	}
 
-
+   .search-bar{
+		position: relative;
+		left: 500px;
+		top:20px;
+	}
 </style>

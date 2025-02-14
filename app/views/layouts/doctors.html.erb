@@ -25,18 +25,20 @@
     <div class="wrapper">
      
     
+      <%=render 'shared/header' %>
+       <%=render 'shared/doctor/aside' %>
+    </div>
 
-      </div>
-
+    
    <div class='content-body'>
-    <%=render 'shared/header' %>
+    
      <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
     <%= yield %>
-      <%=render 'shared/doctor/aside' %>
+     
 
   </div>
-     <%=render 'shared/footer' %>
+    <%=render 'shared/footer' %> 
   </body>
 </html>
 

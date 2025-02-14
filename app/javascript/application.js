@@ -17,3 +17,5 @@ import "./pas/fastclick.min.js"
 import "./pas/app.js"
 import "./pas/dashboard.js"
 import "./pas/demo.js"
+import "vanilla-nested";
+

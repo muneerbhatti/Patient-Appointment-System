@@ -39,6 +39,15 @@ class PatientsController<ApplicationController
     def show
         @patient=Patient.find(params[:id])
     end
+    def delete
+        @patient=Patient.find(params[:id])
+    end
+    def destroy
+        @patient=Patient.find(params[:id]) 
+        if @patient.destroy
+            redirect_to patients_path, notice:'patients was successfully deleted !!'
+        end
+    end
     private
     def params_patient
         params.require(:patient).permit(:Name, :CNIC, :PhoneNo, :Gender, :date_of_birth,:Address)
