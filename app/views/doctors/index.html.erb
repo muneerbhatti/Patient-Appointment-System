@@ -5,7 +5,7 @@
 			 <p class="notice"><%= notice %></p>
           
 		</div>
-		  
+		<% if current_user.userable==@admin  %>  
            
       	<div class="col-lg-4 search-bar">
                <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
@@ -22,7 +22,7 @@
        	 
 
        </div>
-		
+		<%end%>
 	</div>
 	<table class="table-borderd table">
 		<thead>
@@ -46,6 +46,7 @@
 				<td><%=doctor.Address%></td>
 				<td><%=doctor.Specialization %></td>
 				<td><%=doctor.Exprince_year%></td>
+				<% if current_user.userable=="amdin"%>
 		        <td>
 		        	<%=link_to "Edit", edit_doctor_path(doctor),class:'btn btn-info btn-lg' %>
 		        	<%=link_to 'Show',doctor_path(doctor),class:'btn btn-primary btn-lg' %>
@@ -53,7 +54,9 @@
 		        	
 
 		        </td>
+		        <%end %>
 			</tr>
+		
 			<% end %>
 		</tbody>
 	</table>

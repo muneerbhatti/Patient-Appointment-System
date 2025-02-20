@@ -2,7 +2,8 @@ class DoctorsController<ApplicationController
 	layout 'doctors'
 	before_action :set_doctor, only: [:show, :update, :edit, :update, :delete, :destroy ]
 	def index
-		@doctors = Doctor.all
+		@doctor_id=current_user.userable.id
+		@doctors = Doctor.where(id:@doctor_id)
 		if params[:search].present?
 			@doctors=Doctor.where('name LIKE?',"%#{params[:search]}%")
 			@doctors=Doctor.where('id LIKE?',"%#{params[:search]}%")

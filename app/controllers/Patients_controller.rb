@@ -1,13 +1,14 @@
 class PatientsController<ApplicationController
      before_action :authenticate_user!
 	def index
-	    @patients=Patient.all
-        # Retrieve the search parameter, if any
+        @patient_id=current_user.userable.id 
+	    @patients=Patient.where(id:@patient_id)
+
     if params[:search].present?
       @patients = Patient.where('Name LIKE ?', "%#{params[:search]}%")
       @patients = Patient.where('id LIKE ?', "%#{params[:search]}%")
     else
-      @patients = Patient.all
+       @patients = Patient.all
      end
    end
     
@@ -16,12 +17,14 @@ class PatientsController<ApplicationController
     	@patient=Patient.new
     end
     def create
+       
         @patient=Patient.new(Name: params[:patient][:Name],CNIC: params[:patient][:CNIC],
             PhoneNo: params[:patient][:PhoneNo],date_of_birth: params[:patient][:date_of_birth],
-            Address: params[:patient][:Address],Gender: params[:patient][:Gender] )
+            Address: params[:patient][:Address],Gender: params[:patient][:Gender],email: params[:patient][:email] )
         if @patient.save
             redirect_to patients_path ,notice: "Patient was successfully created!!.. "
         else
+
             render :new
         end
     end
@@ -50,6 +53,6 @@ class PatientsController<ApplicationController
     end
     private
     def params_patient
-        params.require(:patient).permit(:Name, :CNIC, :PhoneNo, :Gender, :date_of_birth,:Address)
+        params.require(:patient).permit(:Name, :CNIC, :PhoneNo, :Gender, :date_of_birth,:Address,:email)
     end
 end
