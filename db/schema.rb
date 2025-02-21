@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_16_143149) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_21_153844) do
+  create_table "admins", force: :cascade do |t|
+    t.string "Name"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "Name"
     t.string "Email"
@@ -52,6 +60,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_16_143149) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["token_id"], name: "index_prescriptions_on_token_id"
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.string "Name"
+    t.string "phoneno"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tokens", force: :cascade do |t|

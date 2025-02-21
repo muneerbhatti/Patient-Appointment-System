@@ -14,4 +14,6 @@ d=Doctor.create( Name: "Ali", Email: "ali@test.com", ConectNo: "123456",
 	Address: "krk", Specialization: "test", Exprince_year: "1 year")
 patient=Patient.create(Name:"subhan",CNIC:"654321", PhoneNo:"3213456", email:"subhan@test.com", Gender:"M", 
 	Address:"Chungi amer sadhu, Lahore Pakistan", date_of_birth:"23-Jan-2007",)
+a=Admin.create(Name:"hashim",email:'hashim.test.com',address:'krk')
+r=Reception.create(Name:'Nadeem',email:'nadeem@test.com',phoneno:'1234432',address:'kaly')
 

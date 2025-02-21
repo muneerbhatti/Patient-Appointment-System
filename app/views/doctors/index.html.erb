@@ -5,7 +5,7 @@
 			 <p class="notice"><%= notice %></p>
           
 		</div>
-		<% if current_user.userable==@admin  %>  
+		<% if current_user.userable_type == "Admin" %>  
            
       	<div class="col-lg-4 search-bar">
                <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
@@ -46,15 +46,16 @@
 				<td><%=doctor.Address%></td>
 				<td><%=doctor.Specialization %></td>
 				<td><%=doctor.Exprince_year%></td>
-				<% if current_user.userable=="amdin"%>
-		        <td>
-		        	<%=link_to "Edit", edit_doctor_path(doctor),class:'btn btn-info btn-lg' %>
-		        	<%=link_to 'Show',doctor_path(doctor),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete',doctor_path(doctor), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
-		        	
+				
 
-		        </td>
-		        <%end %>
+		       <% if current_user.userable_type == "Admin" %>
+                  <td>
+                     <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-lg' %>
+                     <%= link_to "Show", doctor_path(doctor), class: 'btn btn-primary btn-lg' %>
+                     <%= link_to "Delete", doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-lg' %>
+                    </td>
+              <% end %>
+   
 			</tr>
 		
 			<% end %>

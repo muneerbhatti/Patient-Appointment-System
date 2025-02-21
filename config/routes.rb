@@ -4,7 +4,8 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
       
     }
-
+  resources :receptions  
+  resources :admins
   resources :doctors 
   resources :patients
   resources :tokens do

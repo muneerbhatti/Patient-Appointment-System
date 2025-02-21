@@ -1,18 +1,20 @@
 class PatientsController<ApplicationController
      before_action :authenticate_user!
 	def index
-        @patient_id=current_user.userable.id 
-	    @patients=Patient.where(id:@patient_id)
-
+        
+    if current_user.userable_type=="Admin" 
     if params[:search].present?
       @patients = Patient.where('Name LIKE ?', "%#{params[:search]}%")
       @patients = Patient.where('id LIKE ?', "%#{params[:search]}%")
     else
-       @patients = Patient.all
+        @patients = Patient.all
      end
+ else
+    @patient_id=current_user.userable.id 
+   @patients=Patient.where(id:@patient_id)
    end
     
-    
+    end
     def new
     	@patient=Patient.new
     end
