@@ -1,0 +1,43 @@
+<%form_with model: @receptions do |form| %>
+<div class="col-lg-5">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Name, class:'mb-3' %>
+			<%=form.text_field :Name, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+</div>
+<div class="col-lg-5">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Email, class:'mb-3' %>
+			<%=form.text_field :email, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+</div>
+<div class="col-lg-5">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :ContectNo, class:'mb-3' %>
+			<%=form.text_field :phoneno, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+</div>
+<div class="col-lg-5">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Address, class:'mb-3' %>
+			<%=form.text_field :address, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-5">
+         <div class="form-group">
+         	<%=form.submit class:"btn btn-primary btn-lg" %>
+         	<%=link_to "Back To Reception", receptions_path,class:"btn btn-info btn-lg" %>
+         </div>
+    </div>
+</div>
+
+<%end%>

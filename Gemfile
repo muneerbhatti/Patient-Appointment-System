@@ -60,3 +60,5 @@ gem "devise", "~> 4.9"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pundit'
+gem 'vanilla_nested'
+gem "letter_opener", group: :development

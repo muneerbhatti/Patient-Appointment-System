@@ -1,0 +1,25 @@
+<div class="card ">
+     <div class="card-body">
+     	<h1 class="text-center">Admins Infermations</h1>
+     </div>
+     <table class="table-border table">
+          <thead>
+               <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Adress</th>
+               </tr>
+          </thead>
+          <tbody>
+               <tr>
+                    <%@admins.each do |admin| %>
+                    <td><%=admin.id %></td>
+                    <td><%=admin.Name %></td>
+                    <td><%=admin.email %></td>
+                    <td><%=admin.address %></td>
+               </tr>
+               <%end%>
+          </tbody>
+     </table>
+</div>

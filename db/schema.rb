@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_21_153844) do
+  create_table "admins", force: :cascade do |t|
+    t.string "Name"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "Name"
     t.string "Email"
@@ -31,6 +39,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
     t.string "Address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "payments", force: :cascade do |t|
@@ -41,6 +50,25 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["patient_id"], name: "index_payments_on_patient_id"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.string "formula"
+    t.integer "token_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token_id"], name: "index_prescriptions_on_token_id"
+  end
+
+  create_table "receptions", force: :cascade do |t|
+    t.string "Name"
+    t.string "phoneno"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tokens", force: :cascade do |t|
@@ -73,13 +101,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_15_162957) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 0
-    t.integer "user_id"
-    t.string "user_type"
+    t.string "userable_type"
+    t.integer "userable_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["userable_type", "userable_id"], name: "index_users_on_userable"
   end
 
   add_foreign_key "payments", "patients"
+  add_foreign_key "prescriptions", "tokens"
   add_foreign_key "tokens", "doctors"
   add_foreign_key "tokens", "patients"
 end
