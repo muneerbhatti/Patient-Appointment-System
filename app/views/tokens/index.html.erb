@@ -42,15 +42,33 @@
 
 				<td><a href="<%=doctor_path(token.doctor.id)%>"><%=token.doctor_id%>#<%=token.doctor.Name%></a></td>
 				<td><a href="<%=patient_path(token.patient.id)%>"><%=token.patient_id%>#<%=token.patient.Name%></a></td>
-				
-		        <td>
-		        	<%=link_to "Edit", edit_token_path(token),class:'btn btn-info btn-lg' %>
-		        	<%=link_to 'Show',token_path(token),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete',token_path(token), method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn btn-info btn-lg'%>
-		        	<%=link_to "Print",token_path(token, format: :pdf),class:"btn btn-primary btn-lg" %>
-		        	 <%= link_to "Prescriptions", token_prescriptions_path(token.id), class: "btn btn-info btn-lg" %>
+			 <td>
+                <% if token.payment.present? %>
+                   <span class="badge <%= status_label_class(token.payment.status) %>">
+                      <%= token.payment.status.to_s.capitalize %>
 
-		        </td>
+                   </span>
+               <% else %>
+                  <span class="badge bg-warning">Pending</span>
+              <% end %>
+          </td>
+        <td>
+          <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
+        </td>
+     <% if current_user.userable == "Doctor" %>
+
+   <% else %>
+      <td>
+        <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
+        <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
+        <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
+      </td>
+       <td>
+          <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-info btn-lg" %>
+         <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
+       </td>
+  <% end %>
+
 			</tr>
 			<% end %>
 		</tbody>

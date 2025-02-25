@@ -20,9 +20,13 @@ class PatientsController<ApplicationController
     end
     def create
        
-        @patient=Patient.new(Name: params[:patient][:Name],CNIC: params[:patient][:CNIC],
-            PhoneNo: params[:patient][:PhoneNo],date_of_birth: params[:patient][:date_of_birth],
-            Address: params[:patient][:Address],Gender: params[:patient][:Gender],email: params[:patient][:email] )
+        @patient=Patient.new(Name: params[:patient][:Name],
+            CNIC: params[:patient][:CNIC],
+            PhoneNo: params[:patient][:PhoneNo],
+            date_of_birth: params[:patient][:date_of_birth],
+            Address: params[:patient][:Address],
+            Gender: params[:patient][:Gender],
+            email: params[:patient][:email])
         if @patient.save
             redirect_to patients_path ,notice: "Patient was successfully created!!.. "
         else

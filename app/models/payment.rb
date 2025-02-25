@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   belongs_to :patient
+  belongs_to :token
   validates :payment_type, :amount, :detail, presence:true
-  validates 
-  enum :status,{:pending,:completed, :failed, :refunded, :canceled}
-  enum :method, {:cash, :credit_card,:debit_card,:online,:insurance}
+  enum :method, { cash: 0, credit_card: 1, debit_card: 2, online: 3, insurance: 4 }
+
 end

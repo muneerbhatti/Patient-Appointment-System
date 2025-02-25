@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_21_153844) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
   create_table "admins", force: :cascade do |t|
     t.string "Name"
     t.string "email"
@@ -49,6 +49,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_153844) do
     t.integer "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.integer "method", default: 0
+    t.integer "token_id"
     t.index ["patient_id"], name: "index_payments_on_patient_id"
   end
 
@@ -79,6 +82,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_153844) do
     t.integer "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["doctor_id"], name: "index_tokens_on_doctor_id"
     t.index ["patient_id"], name: "index_tokens_on_patient_id"
   end

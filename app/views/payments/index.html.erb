@@ -12,6 +12,7 @@
 					<th>Payment_type</th>
 					<th>Details</th>
 					<th>Patient</th>
+					<th>Token</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -22,6 +23,7 @@
 					<td><%=payment.payment_type %></td>
 					<td><%=payment.detail %></td>
 					<td><%=payment.patient_id%></td>
+					<td><%=payment.token_id %></td>
 					<td>
 						<%=link_to "Show",payment_path(payment),class:'abc btn btn-primaty btn-lg' %>
 						<%=link_to "Edit",edit_payment_path(payment),class:'btn btn-primaty btn-lg' %>

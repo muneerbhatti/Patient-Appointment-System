@@ -1,4 +1,5 @@
 class TokensController<ApplicationController
+	 layout 'patients', only: [:index, :new, :show]
 	def index
 		@tokens=Token.all
 		if params[:search].present?
@@ -12,8 +13,12 @@ class TokensController<ApplicationController
 		@token=Token.new
 	end
 	def create
-		@token=Token.new(Blood_pressure: params[:token][:Blood_pressure],Temperature: params[:token][:Temperature],
-			Weight: params[:token][:Weight],doctor_id: params[:token][:doctor_id],patient_id: params[:token][:patient_id])
+		@token=Token.new(Blood_pressure: params[:token][:Blood_pressure],
+			Temperature: params[:token][:Temperature],
+			Weight: params[:token][:Weight],
+			doctor_id: params[:token][:doctor_id],
+			patient_id: params[:token][:patient_id],
+			status: params[:token][:status] )
 		if @token.save
 			redirect_to tokens_path,notice:'Create was successfully created!!......'
 		else
@@ -47,6 +52,6 @@ class TokensController<ApplicationController
 	end
 	private
 	def params_token
-		params.require(:token).permit(:Blood_pressure, :Temperature, :Weight, :doctor_id, :patient_id)
+		params.require(:token).permit(:Blood_pressure, :Temperature, :Weight, :doctor_id, :patient_id, :status)
 	end
 end
