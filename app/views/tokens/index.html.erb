@@ -55,19 +55,30 @@
         <td>
           <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
         </td>
-     <% if current_user.userable == "Doctor" %>
+<% if current_user.userable_type == "Doctor" %>
+  <!-- Doctor only sees tokens and can add prescriptions -->
+  <td>
+  	<%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
+    <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-info btn-lg" %>
+  </td>
 
-   <% else %>
-      <td>
-        <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
-        <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
-        <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
-      </td>
-       <td>
-          <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-info btn-lg" %>
-         <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
-       </td>
-  <% end %>
+<% elsif current_user.userable_type == "Patient" %>
+ 
+  <td>
+    <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
+    <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
+    <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
+  </td>
+
+<% elsif current_user.userable_type == "Reception" %>
+  <td>
+    <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
+    <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
+    <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %> 
+    <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
+  </td>
+<% end %>
 
 			</tr>
 			<% end %>

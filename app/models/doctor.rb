@@ -5,7 +5,7 @@ class Doctor < ApplicationRecord
 	# has_many :users, as: :userable, dependent: :destroy
 	has_one :user, as: :userable, dependent: :destroy
 
-
+    has_many :tokens
 	after_create :set_devise_user
 
 

@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
-    t.integer "method", default: 0
+    t.integer "method"
     t.integer "token_id"
     t.index ["patient_id"], name: "index_payments_on_patient_id"
   end
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
     t.integer "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
+    t.integer "status"
     t.index ["doctor_id"], name: "index_tokens_on_doctor_id"
     t.index ["patient_id"], name: "index_tokens_on_patient_id"
   end

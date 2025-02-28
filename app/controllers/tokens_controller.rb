@@ -1,14 +1,21 @@
 class TokensController<ApplicationController
-	 layout 'patients', only: [:index, :new, :show]
-	def index
-		@tokens=Token.all
-		if params[:search].present?
-			@tokens=Token.where("id LIKE?", "%#{params[:search]}%")
-			@tokens=Token.where("name LIKE?","#{params[:search]}%")
-		else
-			@tokens=Token.all
-		end
-	end
+def index
+  if current_user.userable_type == "Doctor"
+    current_doctor = current_user.userable  # Get the logged-in doctor
+    @tokens = current_doctor.tokens         # Show tokens of this doctor’s patients
+
+  elsif current_user.userable_type == "Patient"
+    current_patient = current_user.userable  # Get the logged-in patient
+    @tokens = current_patient.tokens         # Show only this patient’s tokens
+
+  elsif current_user.userable_type == "Reception"
+    @tokens = Token.all  # Receptionist sees all tokens
+
+  else
+    @tokens = []  # If no valid user type, return an empty list
+  end
+end
+
 	def new
 		@token=Token.new
 	end
