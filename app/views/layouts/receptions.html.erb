@@ -20,8 +20,10 @@
     
     <%= javascript_importmap_tags %>
   </head>
-
+<%=render "shared/header" %>
+<%=render "shared/aside" %>
   <body>
     <%= yield %>
+    <%=render "shared/footer" %>
   </body>
 </html>
