@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
     unless current_user
       'devise'
+      
     end
   end
 end

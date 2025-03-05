@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./pas/jQuery-2.1.3.min"
+//= require rails-ujs
 import "./pas/bootstrap.min.js"
 import "./pas/morris.min.js"
 import "./pas/jquery.sparkline.min.js"

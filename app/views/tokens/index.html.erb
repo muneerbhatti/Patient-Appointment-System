@@ -43,6 +43,7 @@
 				<td><a href="<%=doctor_path(token.doctor.id)%>"><%=token.doctor_id%>#<%=token.doctor.Name%></a></td>
 				<td><a href="<%=patient_path(token.patient.id)%>"><%=token.patient_id%>#<%=token.patient.Name%></a></td>
 			  <td>
+			  	<div>
                 <% if token.payment.present? %>
                    <span class="badge <%= status_label_class(token.payment.status) %>">
                       <%= token.payment.status.to_s.capitalize %>
@@ -50,10 +51,16 @@
                <% else %>
                   <span class="badge bg-warning">Pending</span>
               <% end %>
-          </td>
-        <td>
+           </td>
+         <td>
            <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
         </td>
+        </div>
+
+
+
+
+        
   <% if current_user.userable_type == "Doctor" %>
       <td>
       	<%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>

@@ -13,4 +13,6 @@ module ApplicationHelper
       "bg-secondary"
     end
   end
+  # status_label_class kya hota hai
+  # apliction helper kya hota hai.............
 end

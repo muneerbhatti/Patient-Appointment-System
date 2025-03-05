@@ -4,7 +4,8 @@ class Token < ApplicationRecord
   has_one :payment, dependent: :destroy
   has_many :prescriptions, dependent: :destroy
   accepts_nested_attributes_for :prescriptions, reject_if: :all_blank, allow_destroy: true
-  enum :status, { pending: 0, completed: 1, failed: 2, refunded: 3, canceled: 4 }
+  # enum status: { pending: 0, completed: 1, failed: 2, refunded: 3, canceled: 4 }
+  enum status: [:pending, :completed, :failed, :refunded, :canceled]
 before_save :set_status_based_on_payment
 
 def set_status_based_on_payment
@@ -18,7 +19,6 @@ def set_status_based_on_payment
        self.status = :pending
      end
    end
-
 
 
 end

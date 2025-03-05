@@ -1,6 +1,9 @@
 class DoctorsController < ApplicationController
-  layout 'doctors'
+  layout :set_layout
+
+
   before_action :set_doctor, only: [:show, :update, :edit, :destroy]
+
 
   def index
     if current_user.userable_type == "Admin"  
@@ -70,8 +73,13 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :update, :edit, :destroy]
 
   def index
-    if current_user.userable_type == "Admin"  # Ensure correct admin check
+    if current_user.userable_type == "Admin"
       @doctors = Doctor.all
+      if params[:search].present?
+        @doctors = @doctors.where("name LIKE ? OR CAST(id AS TEXT) LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+      end
+    elsif current_user.userable_type == "Reception"
+            @doctors = Doctor.all
       if params[:search].present?
         @doctors = @doctors.where("name LIKE ? OR CAST(id AS TEXT) LIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
       end
@@ -127,5 +135,9 @@ class DoctorsController < ApplicationController
 
   def doctor_params
     params.require(:doctor).permit(:name, :email, :connect_no, :specialization, :experience_year, :address)
+  end
+
+  def set_layout
+      current_user.userable_type.pluralize.downcase
   end
 end

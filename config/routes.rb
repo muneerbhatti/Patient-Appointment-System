@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     resources :prescriptions
   end
   resources :payments
+
+
 end

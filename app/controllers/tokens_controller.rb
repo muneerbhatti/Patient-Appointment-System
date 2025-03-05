@@ -1,19 +1,19 @@
 class TokensController<ApplicationController
 def index
   if current_user.userable_type == "Doctor"
-    current_doctor = current_user.userable  # Get the logged-in doctor
-    @tokens = current_doctor.tokens         # Show tokens of this doctor’s patients
+    current_doctor = current_user.userable  
+    @tokens = current_doctor.tokens         
 
   elsif current_user.userable_type == "Patient"
-    current_patient = current_user.userable  # Get the logged-in patient
-    @tokens = current_patient.tokens         # Show only this patient’s tokens
+    current_patient = current_user.userable  
+    @tokens = current_patient.tokens         
 
   elsif current_user.userable_type == "Reception"
-    @tokens = Token.all  # Receptionist sees all tokens
+    @tokens = Token.all  
 
   else
-    @tokens = []  # If no valid user type, return an empty list
-  end
+    @tokens = []  
+  end  
 end
 
 	def new

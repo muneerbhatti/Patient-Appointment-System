@@ -5,7 +5,7 @@
 		</div>
 		 <p class="notice"><%= notice %></p>
 	</div>
-	<%if current_user.userable==@admin %>
+	<%if current_user.userable_type=="Admin" %>
 	
 	<div class="col-lg-4 search-bar">
     <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
@@ -23,6 +23,24 @@
    <div class="abc">
    	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
    </div>
+   <%elsif current_user.userable_type=="Reception" %>
+
+	<div class="col-lg-4 search-bar">
+    <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
+        <div class="input-group justify-content-center">
+            <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
+            <span class="input-group-btn">
+                <%= form.submit "Search", class: "btn btn-primary" %>
+            </span>
+        </div>
+    <% end %>
+</div>
+
+
+   <br>
+   <div class="abc">
+   	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
+   </div>  
 <%end%>
 	
 	</div>
@@ -52,14 +70,25 @@
 				<td><%=patient.Address%></td>
 				<td><%=patient.Gender %></td>
 				<td><%=patient.date_of_birth%></td>
-				<%if current_user.userable==@admin  %>
+				<%if current_user.userable_type=="Admin"  %>
 		        <td>
 		        	<%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
 		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
 		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
 		        </td>
-		        <%end%>
+		      
 			</tr>
+			<%elsif  current_user.userable_type== "Reception" %>
+		        <td>
+		        	<%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
+		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
+		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
+		        </td>			
+				 <%else %>
+				 <td>
+				   <%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
+				 </td>
+				 <%end %>
 			<% end %>
 		</tbody>
 	</table>

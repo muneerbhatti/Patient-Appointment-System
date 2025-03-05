@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
+ActiveRecord::Schema[7.2].define(version: 2025_03_04_151823) do
   create_table "admins", force: :cascade do |t|
     t.string "Name"
     t.string "email"
@@ -49,9 +49,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
     t.integer "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
     t.integer "method"
     t.integer "token_id"
+    t.integer "status"
     t.index ["patient_id"], name: "index_payments_on_patient_id"
   end
 
@@ -104,9 +104,9 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_24_073129) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
     t.string "userable_type"
     t.integer "userable_id"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["userable_type", "userable_id"], name: "index_users_on_userable"

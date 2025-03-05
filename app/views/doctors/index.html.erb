@@ -1,3 +1,4 @@
+<%=debugger%>
 <div class="col-lg-12">
 	<div class="card">
 		<div class="card-body">
@@ -22,6 +23,22 @@
        	 
 
        </div>
+       <% elsif current_user.userable_type == "Reception" %> 
+      	<div class="col-lg-4 search-bar">
+               <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
+          <div class="input-group justify-content-center">
+               <%= form.text_field :search, placeholder: "Search doctors", class: "form-control" %>
+            <span class="input-group-btn">
+                <%= form.submit "Search", class: "btn btn-primary" %>
+            </span>
+          </div>
+          <% end %>
+       </div>
+       <div class="abc">
+       	   <%=link_to 'New doctor',new_doctor_path, class:'btn btn-primary btn-lg' %>
+       	 
+
+       </div>       
 		<%end%>
 	</div>
 	<table class="table-borderd table">
@@ -54,6 +71,14 @@
                      <%= link_to "Show", doctor_path(doctor), class: 'btn btn-primary btn-lg' %>
                      <%= link_to "Delete", doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-lg' %>
                     </td>
+                    <%elsif current_user.userable_type == "Reception" %>
+                  <td>
+                     <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-lg' %>
+                     <%= link_to "Show", doctor_path(doctor), class: 'btn btn-primary btn-lg' %>
+                     <%= link_to "Delete", doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-lg' %>
+                    </td> 
+                    <%else %> 
+                     <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-lg' %>                  
               <% end %>
    
 			</tr>
