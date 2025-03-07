@@ -18,8 +18,8 @@
 	<div class="col-lg-5">
 		<div class="form-group">
 			<%=form.label :Contact, class:'mb-3' %>
-			<%=form.text_field :ConectNo , class:'form-control form-control-lg' %>
-			 <% @doctor.errors.full_messages_for(:ConectNo).each do |message|  %>
+			<%=form.text_field :ContactNo , class:'form-control form-control-lg' %>
+			 <% @doctor.errors.full_messages_for(:ContactNo).each do |message|  %>
 			   <p class="text-danger"><%= message %></p>
 			 <% end %>
 		</div>
@@ -35,8 +35,8 @@
 	</div>
 	<div class="col-lg-5">
 		<div class="form-group">
-			<%=form.label :Exprince, class:'mb-3' %>
-			<%=form.text_field :Exprince_year , class:'form-control form-control-lg' %>
+			<%=form.label :Expreince, class:'mb-3' %>
+			<%=form.text_field :experince_year , class:'form-control form-control-lg' %>
 		</div>
 	</div>
 	<div class="col-lg-5">

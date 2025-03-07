@@ -1,3 +1,4 @@
+<%# <%=debugger%> 
 <aside class="main-sidebar">
   <section class="sidebar">
     <div class="user-panel">
@@ -56,11 +57,9 @@
         <li class="active treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Doctors</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<%= new_doctor_path %>"><i class="fa fa-circle-o"></i> New Doctor</a></li>
-            <li><a href="<%= doctors_path %>"><i class="fa fa-circle-o"></i> Doctor(s)</a></li>
+            <li class="active"><a href="<%= doctors_path %>"><i class="fa fa-circle-o"></i> Doctor(s)</a></li>
           </ul>
         </li>
-        <li><a href="<%= new_doctor_path %>"><i class="fa fa-th"></i> <span>Doctor</span> <small class="label pull-right bg-green">new</small></a></li>
       </ul>
 
     <% elsif current_user.userable_type == "Patient" %>

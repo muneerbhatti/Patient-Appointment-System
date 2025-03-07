@@ -25,9 +25,16 @@ class DoctorsController < ApplicationController
   end
 
   def create
-    @doctor = Doctor.new(doctor_params)
+    @doctor = Doctor.new(Name: params[:doctor][:Name], 
+      Email: params[:doctor][:Email],
+      ContactNo: params[:doctor][:ContactNo],
+      Address:  params[:doctor][:Address],
+      specialization: params[:doctor][:specialization],
+      experience_year: params[:doctor][:experience_year],
+      )
     if @doctor.save
       @doctor.build_user(email: @doctor.email, password: '123456').save
+
       redirect_to doctors_path, notice: '✅ Doctor was successfully created.'
     else
       flash.now[:alert] = '⚠️ Error creating doctor. Please check the details.'

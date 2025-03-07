@@ -9,7 +9,8 @@
 	<div class="col-lg-5">
 		<div class="form-group">
 			<%=form.label :Payment_type, class:'mb-3' %>
-			<%=form.text_field :payment_type, class:'form-control form-control-lg' %>
+			<%= form.select :payent_type, options_for_select(Payment.payment_types.keys ), {} ,class:'form-control form-control-lg'%>
+			<%#=form.text_field :payment_type, class:'form-control form-control-lg' %>
 		</div>
 	</div>
 	<div class="col-lg-5">
@@ -25,13 +26,10 @@
 		</div>
 		
 	</div>
-		<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :Token_ID, class:'mb-3' %>
-			<%=form.text_field :token_id, class:'form-control form-control-lg' %>
-		</div>
 		
-	</div>
+			<%=form.hidden_field :token_id, class:'form-control form-control-lg' , value: params[:token_id]%>
+		
+		
 	<div class="col-lg-5">
 		
 		<%=form.submit class:'abc btn btn-primaty btn-lg' %>

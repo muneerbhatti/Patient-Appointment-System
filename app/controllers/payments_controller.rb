@@ -9,7 +9,6 @@ class PaymentsController<ApplicationController
 		@payment=Payment.new(amount: params[:payment][:amount],
 			payment_type: params[:payment][:payment_type],
 			detail: params[:payment][:detail],
-			patient_id: params[:payment][:patient_id],
 			token_id: params[:payment][:token_id])
 		if @payment.save
 			redirect_to tokens_path,notice:"patients has been successfully payment"
@@ -34,6 +33,6 @@ class PaymentsController<ApplicationController
 
 private
 def parmas_payment
-	params.require(:payment).permit(:amount,:payment_type,:detail,:patient_id,:token_id)
+	params.require(:payment).permit(:amount,:payment_type,:detail,:token_id)
 end
 end
