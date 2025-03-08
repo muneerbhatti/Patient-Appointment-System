@@ -1,20 +1,22 @@
 class PatientsController<ApplicationController
      before_action :authenticate_user!
-	def index
-        
-    if current_user.userable_type=="Admin" 
+def index
+  if current_user.userable_type == "Admin" || current_user.userable_type == "Reception"
     if params[:search].present?
-      @patients = Patient.where('Name LIKE ?', "%#{params[:search]}%")
-      @patients = Patient.where('id LIKE ?', "%#{params[:search]}%")
+      @patients = Patient.where('Name LIKE ? OR id LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%")
     else
-        @patients = Patient.all
-     end
- else
-    @patient_id=current_user.userable.id 
-   @patients=Patient.where(id:@patient_id)
-   end
-    
+      @patients = Patient.all
     end
+  elsif current_user.userable_type == "Doctor"
+    doctor_id = current_user.userable.id
+    @patients = Patient.joins(:tokens).where(tokens: { doctor_id: doctor_id }).distinct
+  else # Assume current_user is a patient
+    current_patient_id = current_user.userable.id
+    @patients = Patient.where(id: current_patient_id)
+  end
+end
+
+    
     def new
     	@patient=Patient.new
     end

@@ -18,20 +18,14 @@
 			<%=form.text_field :Weight, class:'form-control form-control-lg' %>
 		</div>
 	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :doctor_id, class:'mb-3' %>
-			<%=form.text_field :doctor_id, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :patient_id, class:'mb-3' %>
-			<%=form.text_field :patient_id, class:'form-control form-control-lg' %>
-		</div>
-	</div>
+<div class="col-lg-5">
+  <div class="form-group">
+    <%= form.label :doctor_id, "Select Doctor", class: 'mb-3' %>
+    <%= form.select :doctor_id, options_from_collection_for_select(Doctor.all, :id, ->(d) { "#{d.Name} - #{d.Specialization}" }), { prompt: "Choose a doctor" }, class: "form-control form-control-lg" %>
+  </div>
+</div>
 
-
+ <%=form.hidden_field :patient_id, value:params[:patient_id] %>
 
    <div class="col-lg-5">
     	<%=form.submit class:'btn btn-primary btn-lg' %>

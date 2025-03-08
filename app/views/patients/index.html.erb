@@ -84,7 +84,7 @@
 		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
 		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
 		        </td>			
-				 <%else %>
+				 <%elsif current_user.userable_type=="Patient" %>
 				 <td>
 				   <%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
 				 </td>

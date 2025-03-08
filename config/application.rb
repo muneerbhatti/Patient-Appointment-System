@@ -23,5 +23,6 @@ module Pas
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+     config.hosts << "78ee-2402-ad80-ad-689b-fe5a-1d63-2827-3021.ngrok-free.app"
   end
 end

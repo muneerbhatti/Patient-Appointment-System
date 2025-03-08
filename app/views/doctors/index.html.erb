@@ -76,10 +76,11 @@
                      <%= link_to "Delete", doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-lg' %>
                     </td> 
 
-                    <%else %> 
+                    <%elsif current_user.userable_type== "Doctor" %> 
                     <td>
                      <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-lg' %>
-                     </td>                  
+                     </td> 
+                                     
               <% end %>
    
 			</tr>
