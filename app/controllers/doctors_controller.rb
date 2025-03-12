@@ -1,7 +1,7 @@
 
 class DoctorsController < ApplicationController
   layout 'doctors'
-  before_action :set_doctor, only: [:show, :update, :edit, :destroy]
+  before_action :set_doctor, only: [:show, :update, :edit]
 def index
   if current_user.userable_type == "Admin" || current_user.userable_type == "Reception"
     # Admin and Reception: show all doctors and allow search
@@ -33,8 +33,8 @@ end
       @doctor.build_user(email: @doctor.Email, password: '123456').save
       redirect_to doctors_path, notice: '✅ Doctor was successfully created.'
     else
-      flash.now[:alert] = '⚠️ Error creating doctor. Please check the details.'
-      render :new
+       
+      redirect_to doctors_path, alert: '⚠️ Failed to delete the doctor.'
     end
   end
 
@@ -52,8 +52,11 @@ end
 
   def show
   end
-
+ def delete
+   @doctor = Doctor.find(params[:id])
+ end
   def destroy
+     @doctor = Doctor.find(params[:id])
     if @doctor.destroy
       redirect_to doctors_path, notice: '✅ Doctor was successfully deleted.'
     else

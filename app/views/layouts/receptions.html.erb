@@ -19,11 +19,28 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     
     <%= javascript_importmap_tags %>
+    
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
+
+
+  <body class="skin-blue  wysihtml5-supported">
+    <div class="wrapper">
 <%=render "shared/header" %>
-<%=render "shared/aside" %>
-  <body>
+
+</div>
+<div class="content-body">
+  <%=render "shared/aside" %>
     <%= yield %>
     <%=render "shared/footer" %>
   </body>
+  </div>
 </html>
+<style type="text/css">
+  .content-body{
+    margin-left: 300px;
+  }
+</style>
+

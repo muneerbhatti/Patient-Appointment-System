@@ -19,4 +19,5 @@ import "./pas/app.js"
 import "./pas/dashboard.js"
 import "./pas/demo.js"
 import "vanilla-nested";
-
+import Rails from "@rails/ujs";
+Rails.start();
