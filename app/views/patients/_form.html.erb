@@ -1,5 +1,7 @@
 <%=form_with model: @patient do |form| %>
+<div class="content-body">
 <div class="row">
+
 	<div class="col-lg-5">
 		<div class="form-group">
 			<%=form.label :Name, class:'mb-3' %>
@@ -14,13 +16,13 @@
 	</div>
 	<div class="col-lg-5">
 		<div class="form-group">
-			<%=form.label :PhoneNo, class:'mb-3' %>
+			<%=form.label :ContactNo, class:'mb-3' %>
 			<%=form.text_field :PhoneNo, class:'form-control form-control-lg' %>
 		</div>
 	</div>
 	<div class="col-lg-5">
 			<div class="form-group">
-			<%=form.label :email, class:'mb-3' %>
+			<%=form.label :Email, class:'mb-3' %>
 			<%=form.text_field :email, class:'form-control form-control-lg' %>
 		</div>
 	</div>
@@ -38,7 +40,7 @@
 	</div>
 	<div class="col-lg-5">
 		<div class="form-group">
-			<%=form.label :date_of_birth, class:'mb-3' %>
+			<%=form.label :Date_of_birth, class:'mb-3' %>
 			<%=form.text_field :date_of_birth, class:'form-control form-control-lg' %>
 		</div>
 	</div>
@@ -47,4 +49,11 @@
 		<%=link_to "Back to patient",patients_path, class:'btn btn-inf btn-lg' %>
 	</div>
 </div>
+</div>
 <%end%>
+
+<style type="text/css">
+  .content-body{
+    margin-left: 300;
+  }
+</style>

@@ -203,7 +203,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="<%= image_url('user2-160x160.jpg') %>" class="user-image" alt="User Image"/>
-            <span class="hidden-xs">Alexander Pierce</span>
+            <span class="hidden-xs">Profile</span>
           </a>
          
           <ul class="dropdown-menu">
@@ -211,17 +211,22 @@
             <li class="user-header">
               <img src="<%= image_url('user2-160x160.jpg') %>" class="img-circle" alt="User Image"/>
              
+               
+               <%if current_user.userable_type=="Doctor" || current_user.userable_type=="Patient" %>
                <% if current_user %>
-                   <li><%= link_to "Current User", current_user.email %></li>
+                 <li><strong> <%= link_to current_user.userable.Name, current_user.email %></strong></li>
               <% else %>
                     <li>No user logged in</li>
+                    <%end%>
+                    <%else%>
+              
+                        <p>Reception</p>
                <% end %>
 
-                <small>Member since Nov. 2012</small>
              
             </li>
             <!-- Menu Body -->
-            <li class="user-body">
+<%#             <li class="user-body">
               <div class="col-xs-4 text-center">
                 <a href="#">Followers</a>
               </div>
@@ -231,17 +236,46 @@
               <div class="col-xs-4 text-center">
                 <a href="#">Friends</a>
               </div>
-            </li>
+            </li> %>
             <!-- Menu Footer-->
+            <%if current_user.userable_type=="Patient" %>
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <%=link_to "Profile",patients_path,class:"btn btn-primary"  %>
               </div>
               <div class="pull-right">
-               <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-primary' %> 
- 
+               <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+               
               </div>
             </li>
+            <%elsif current_user.userable_type=="Doctor" %>
+            <li class="user-footer">
+              <div class="pull-left">
+                <%=link_to "Profile",doctors_path,class:"btn btn-primary"  %>
+              </div>
+              <div class="pull-right">
+               <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                
+              </div>
+            <%elsif current_user.userable_type=="Reception" %>
+            <li class="user-footer">
+              <div class="pull-left">
+                <%=link_to "Profile",receptions_path,class:"btn btn-primary"  %>
+              </div>
+              <div class="pull-right">
+                  <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+              </div> 
+                          <%elsif current_user.userable_type=="Admin" %>
+            <li class="user-footer">
+              <div class="pull-left">
+                <%=link_to "Profile",admins_path,class:"btn btn-primary"  %>
+              </div>
+              <div class="pull-right">
+                <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                
+              </div>             
+            <%end%>
+            </li>            
           </ul>
         
         </li>
@@ -251,7 +285,11 @@
 </header>
 
 
-
+<style>
+  .btn-default{
+    background-color:green ;
+  }
+</style>
 
 
 

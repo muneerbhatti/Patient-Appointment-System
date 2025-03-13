@@ -67,21 +67,21 @@
         <li class="active treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Patients</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<%= new_patient_path %>"><i class="fa fa-circle-o"></i> New Patient</a></li>
             <li><a href="<%= patients_path %>"><i class="fa fa-circle-o"></i> Patient(s)</a></li>
           </ul>
         </li>
-        <li><a href="<%= new_patient_path %>"><i class="fa fa-th"></i> <span>Patient</span> <small class="label pull-right bg-green">new</small></a></li>
 
         <li class="active treeview">
           <a href="#"><i class="fa fa-dashboard"></i> <span>Token</span> <i class="fa fa-angle-left pull-right"></i></a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<%= new_token_path %>"><i class="fa fa-circle-o"></i> New Token</a></li>
             <li><a href="<%= tokens_path %>"><i class="fa fa-circle-o"></i> Token(s)</a></li>
           </ul>
         </li>
         <li><a href="<%= new_token_path %>"><i class="fa fa-th"></i> <span>Token</span> <small class="label pull-right bg-green">new</small></a></li>
       </ul>
+         <ul class="treeview-menu">
+            <li class="active"><a href="<%= doctors_path %>"><i class="fa fa-circle-o"></i> Doctor(s)</a></li>
+          </ul>
     <% end %>
   </section>
 </aside>
