@@ -1,5 +1,6 @@
+<div class="content-body">
 <%= form_for  [@token, @prescriptions] do |form| %>
-<div class="row">
+<div class="row text-justify">
 	<div class="col-lg-5">
 		<div class="form-group">
 			<%=form.label :Type, class:'mb-3' %>
@@ -37,6 +38,7 @@
 	</div>
 	
 <%end%>
+</div>
 <style type="text/css">
 	.btn_primary{
 		background: #A0F;
@@ -46,4 +48,10 @@
 		background:  #0F0;
 		color: white;
 	}
+	.content-body{
+    margin-left: 150px;
+  }
+  .text-justify{
+  	 text-align: justify;
+  }
 </style>

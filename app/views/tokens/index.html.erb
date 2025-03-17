@@ -16,9 +16,12 @@
 		</div>
 		<%end%>
 	</div>
+	<%if current_user.userable_type=="Reception" || current_user.userable_type=="Patient" ||
+	current_user.userable_type=="Admin" %>
 	<div class="abc">
 		<%=link_to 'New token',new_token_path, class:'btn btn-primary btn-lg' %>
 	</div>
+	<%end%>
 		</div>
 	<table class="table table-borderd">
 		<thead>
@@ -44,6 +47,7 @@
 				<td><a href="<%=doctor_path(token.doctor.id)%>"><%=token.doctor_id%>#<%=token.doctor.Name%></a></td>
 				<td><a href="<%=patient_path(token.patient.id)%>"><%=token.patient_id%>#<%=token.patient.Name%></a></td>
 			  <td>
+
 			  	<div>
                 <% if token.payment.present? %>
                    <span class="badge <%= status_label_class(token.payment.status) %>">
@@ -53,9 +57,11 @@
                   <span class="badge bg-warning">Pending</span>
               <% end %>
            </td>
+           	<%if current_user.userable_type=="Reception" || current_user.userable_type=="Patient"|| current_user.userable_type=="Admin" %>
          <td>
            <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
         </td>
+        <%end%>
         </div>
 
 
@@ -104,7 +110,7 @@
     }
   
   .content-body{
-    margin-left: 100px;
+    margin-left: 150px;
   }
 
 </style>

@@ -26,8 +26,17 @@
   </div>
 </div>
 
- <%=form.hidden_field :patient_id, value:params[:patient_id] %>
+<%if current_user.userable_type=="Patient" %>
+ <%=form.hidden_field :patient_id, value:current_user.userable.id %>
 
+<%elsif current_user.userable_type=="Reception" || current_user.userable_type=="Admin" %>
+<div class="col-lg-5">
+  <div class="form-group">
+    <%= form.label :Patient_id, "Select Patient", class: 'mb-3' %>
+    <%= form.select :patient_id, options_from_collection_for_select(Patient.all, :id, ->(d) { "#{d.id} - #{d.Name}" }), { prompt: "Choose a patient" }, class: "form-control form-control-lg" %>
+  </div>
+</div>
+<%end%>
    <div class="col-lg-5">
     	<%=form.submit class:'btn btn-primary btn-lg' %>
     	<%=link_to 'Back to Token', tokens_path,class:'btn btn-primary btn-lg' %>

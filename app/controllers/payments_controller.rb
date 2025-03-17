@@ -1,7 +1,15 @@
 class PaymentsController<ApplicationController
-	def index
-		@payments=Payment.all
-	end
+	 def index
+    #     if current_user.userable_type == "Doctor"
+    #     current_doctor = current_user.userable
+    #     @payments = current_doctor.payments
+    # elsif current_user.userable_type == "Patient"
+    #    current_patient = current_user.userable
+    #    @payments = current_patient.payments
+    # else
+      @payments = Payment.all
+    # end
+  end
 	def new
 		@payment=Payment.new
 	end
@@ -10,6 +18,7 @@ class PaymentsController<ApplicationController
 			payment_type: params[:payment][:payment_type],
 			detail: params[:payment][:detail],
 			token_id: params[:payment][:token_id])
+		
 		if @payment.save
 			redirect_to tokens_path,notice:"patients has been successfully payment"
 		else
@@ -36,3 +45,5 @@ def parmas_payment
 	params.require(:payment).permit(:amount,:payment_type,:detail,:token_id)
 end
 end
+
+

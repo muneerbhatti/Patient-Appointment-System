@@ -34,29 +34,48 @@
           <p><%= link_to "Edit", edit_doctor_path(doctor), class: "btn1 btn-info" %></p>
         </div>
       <% end %>
-    
-    <% elsif current_user.userable_type == "Patient" %>
-      <div class="col-sm-12">
-        
-          <div class="btn-group w-100 mb-2">
-            <div class="row">
-          <% @doctors.each do |doctor| %>
-            <div class="card2">
-              <%= image_tag "avatar5.png", alt: "Doctor Profile", style: "width:100%" %>
-              <h1><%= doctor.Name %></h1>
-              <p class="title">Specialization: <%= doctor.Specialization %></p>
-              <p>Email: <%= doctor.Email %></p>
-              <p>Contact: <%= doctor.ContactNo %></p>
-              <p>Address: <%= doctor.Address %></p>
-              <p>Experience: <%= doctor.experience_year %> years</p>
-             <a href="tel:<%= doctor.ContactNo %>">
-              <button>Contact</button>
+<% elsif current_user.userable_type == "Patient" %>
+  <div class="col-sm-12">
+    <div class="btn-group w-100 mb-2">
+      <div class="row">
+        <% @doctors.each do |doctor| %>
+          <div class="card2">
+            <%= image_tag "avatar5.png", alt: "Doctor Profile", style: "width:100%" %>
+            <h1><%= doctor.Name %></h1>
+            <p class="title">Specialization: <%= doctor.Specialization %></p>
+            <p>Email: <%= doctor.Email %></p>
+            <p>Contact: <%= doctor.ContactNo %></p>
+            <p>Address: <%= doctor.Address %></p>
+            <p>Experience: <%= doctor.experience_year %> years</p>
+
+            <!-- Call Button -->
+            <a href="tel:<%= doctor.ContactNo %>" style="text-decoration: none;">
+              <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                <i class="fa fa-phone"></i> Call
+              </button>
+            </a>
+
+            <!-- WhatsApp Button -->
+            <div>
+              <a href="https://wa.me/<%= doctor.ContactNo %>" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
+                  <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", width: 20, height: 20, style: "margin-right: 5px;" %>
+                  WhatsApp
+                </button>
               </a>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
+
+        <!-- Fill Empty Spaces to Keep 4-Column Grid -->
+        <% extra_spaces = (4 - (@doctors.count % 4)) % 4 %>
+        <% extra_spaces.times do %>
+          <div class="card2" style="visibility: hidden;"></div>
+        <% end %>
+
       </div>
-</div>
+    </div>
+  </div>
     <% else %> 
       <table class="table-bordered table">
         <thead>
@@ -138,17 +157,27 @@
   transition: background 0.3s ease;  
 }
 
-
-
-
-.row {
+<%# .row {
   display: grid;
-<%#   grid-template-columns: repeat(4, 1fr); /* Ensures 3 profiles per row */ %>
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dynamic columns */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  flex-wrap: wrap;
-  gap: 100px; 
-}
+  justify-content: center; /* Centers last row */
+} %>
 
+
+
+
+ .row {
+   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+ justify-content: space-between; /* Ensures even spacing */
+  gap: 50px; /* Adds space between cards */
+ 
+
+}
+ 
 .card2 {
   border: 1px solid #ccc;
   padding: 15px;
@@ -166,6 +195,7 @@
   color: grey;
   font-size: 18px;
 }
+
 
 button {
   border: none;

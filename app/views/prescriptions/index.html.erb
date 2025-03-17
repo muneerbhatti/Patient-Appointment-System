@@ -1,3 +1,4 @@
+<div class="content-body">
 <div class="card">
 	<div class="card-body">
 		<h1 class="text-center">Perscription Details</h1>
@@ -24,12 +25,13 @@
 		 	<td>
 		 		<%= link_to "Edit", edit_token_prescription_path(token_id: prescription.token_id, id: prescription.id), class: 'btn btn_primary btn-lg' %>
 		 		<%=link_to "Show", token_prescription_path(token_id:prescription.token_id,id:prescription.id), class:'btn btn_info btn-lg'%>
-
+                 <%=link_to "Delete",token_prescription_path(token_id:prescription.token_id,id:prescription.id) ,class:" btn btn-danger btn-lg"  %>
 		 	</td>
 		 </tr>
 		 <%end%>
 		</tbody>
 	</table>
+</div>
 </div>
 <style type="text/css">
 	.btn_primary{
@@ -40,4 +42,7 @@
 		background: #BBB;
 		color: white;
 	}
+	.content-body{
+    margin-left: 150px;
+  }
 </style>

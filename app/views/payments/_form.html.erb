@@ -19,9 +19,19 @@
 			<%=form.text_field :detail, class:'form-control form-control-lg' %>
 		</div>
 	</div>
+	<%if current_user.userable_type=="Patient" %>
 		
 			<%=form.hidden_field :token_id, class:'form-control form-control-lg' , value: params[:token_id]%>
-		
+			<%elsif current_user.userable_type=="Reception" %>
+		<div class="col-lg-5">
+  <div class="form-group">
+    <%= form.label :token_id, "Select token_id", class: 'mb-3' %>
+   <%= form.select :token_id, options_from_collection_for_select(Token.all, :id, ->(d) { "#{d.id} - #{d.patient.Name}" }), { prompt: "Choose a token_id + Patient_Name" }, class: "form-control form-control-lg" %>
+
+
+  </div>
+</div>	
+	<%end%>	
 		
 	<div class="col-lg-5">
 		

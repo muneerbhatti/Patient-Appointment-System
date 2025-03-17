@@ -36,7 +36,15 @@ class PrescriptionsController<ApplicationController
      @token=Token.find(params[:token_id])
      @prescription=Prescription.find(params[:id])
   end
-
+def destroy
+  @token=Token.find(params[:token_id])
+    @prescription=Prescription.find(params[:id])
+     if @prescription.destroy(prescription_params) 
+      redirect_to token_prescriptions_path , notice:'Prescription have be successfully Updated!!'
+    else
+      render :all
+    end
+  end
   private
 
   def prescription_params
