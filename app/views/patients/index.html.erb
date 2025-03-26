@@ -70,12 +70,20 @@
 				<td><%=patient.Gender %></td>
 				<td><%=patient.date_of_birth%></td>
 				<%if current_user.userable_type=="Admin" ||current_user.userable_type== "Reception" %>
+
 		        <td>
-		        	<%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
-		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
+
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+             <%= link_to "Edit", edit_patient_path(patient), class: "dropdown-item btn-primary" %>
+             <%= link_to "Show", patient_path(patient), class: "dropdown-item btn-info" %>
+             <%= button_to "Delete", patient_path(patient), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "dropdown-item btn-danger btn-lg " %>
+            </div>
+        </div>
+
 		        </td>
-		      
+		     
 			</tr>
 	
 				 <%end %>
@@ -134,4 +142,41 @@
   cursor: pointer;
   transition: background 0.3s ease;  
 }
+
+
+
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
 </style>
