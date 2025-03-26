@@ -19,13 +19,15 @@
               <!-- small box -->
               <div class="small-box bg-aqua">
                 <div class="inner">
-                  <%if current_user.userable_type=="Doctor" %>
-                     <h3>Doctor</h3>
-                      <p>Profile</p>
-                  <%else%>
-                    <h3><%=@total_doctors%></h3>
-                     <p>Total Doctor(s)</p>
-                     <%end%>
+              <% if current_user.userable_type == "Doctor" %>
+                <h3>Doctor Profile</h3>
+                <p>Manage Your Information</p>
+              <% else %>
+              <h3><%= @total_doctors %></h3>
+              <p>Available Doctors</p>
+              <% end %>
+
+
                 </div>
                 <div class="icon">
                   <i class="ion ion-bag"></i>
@@ -37,13 +39,14 @@
               <!-- small box -->
               <div class="small-box bg-green">
                 <div class="inner">
-                  <%if current_user.userable_type=="Patient" %>
-                  <h3>Patient</h3>
-                  <p>Profile</p>
-                  <%else %>
-                  <h3><%=@total_patients%></h3>
-                  <p>Toltal Patient (s)</p>
-                  <%end%>
+               <% if current_user.userable_type == "Patient" %>
+                <h3>Patient Profile</h3>
+                <p>Manage Your Details</p>
+              <% else %>
+             <h3><%= @total_patients %></h3>
+             <p>Total Registered Patients</p>
+            <% end %>
+
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
@@ -55,8 +58,15 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3><%=@total_tokens%></h3>
-                  <p>Total Token (s)</p>
+                  <% if ["Patient", "Doctor"].include?(current_user.userable_type) %>
+                   <h3>Token<span style="font-size: 80%;">(s)</span></h3>
+
+                 <p>Access Your Token</p>
+                  <% else %>
+                 <h3><%= @total_tokens %></h3>
+                <p>Total Token(s)</p>
+               <% end %>
+
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
@@ -68,8 +78,13 @@
               <!-- small box -->
               <div class="small-box bg-red">
                 <div class="inner">
-                  <h3><%=@total_payments %></h3>
-                  <p>Total Payment</p>
+             <% if current_user.userable_type == "Patient" %>
+              <h3>Payment<span style="font-size: 80%;">(s)</span></h3>
+               <p>View Your Payments</p>
+            <% else %>
+           <h3><%= @total_payments %></h3>
+           <p>Overall Payment Summary</p>
+            <% end %>
                 </div>
                 <div class="icon">
                   <i class="ion ion-pie-graph"></i>

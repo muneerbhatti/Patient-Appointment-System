@@ -5,6 +5,7 @@ class Patient < ApplicationRecord
 
 	has_one :user, as: :userable, dependent: :destroy
      has_many :tokens
+     has_many :payments, through: :tokens
 
     after_create :set_devise_user
 	def set_devise_user
@@ -13,3 +14,18 @@ class Patient < ApplicationRecord
 
 	
 end
+
+# class Physician < ApplicationRecord
+#   has_many :appointments
+#   has_many :patients, through: :appointments
+# end
+
+# class Appointment < ApplicationRecord
+#   belongs_to :physician
+#   belongs_to :patient
+# end
+
+# class Patient < ApplicationRecord
+#   has_many :appointments
+#   has_many :physicians, through: :appointments
+# end

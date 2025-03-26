@@ -241,37 +241,46 @@
             <%if current_user.userable_type=="Patient" %>
             <li class="user-footer">
               <div class="pull-left">
+
+
                 <%=link_to "Profile",patients_path,class:"btn btn-primary"  %>
               </div>
               <div class="pull-right">
-               <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+
+
                
               </div>
             </li>
             <%elsif current_user.userable_type=="Doctor" %>
             <li class="user-footer">
               <div class="pull-left">
+
                 <%=link_to "Profile",doctors_path,class:"btn btn-primary"  %>
               </div>
               <div class="pull-right">
-               <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+
                 
               </div>
             <%elsif current_user.userable_type=="Reception" %>
             <li class="user-footer">
               <div class="pull-left">
+
                 <%=link_to "Profile",receptions_path,class:"btn btn-primary"  %>
               </div>
               <div class="pull-right">
-                  <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                 <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+
               </div> 
-                          <%elsif current_user.userable_type=="Admin" %>
+            <%elsif current_user.userable_type=="Admin" %>
             <li class="user-footer">
               <div class="pull-left">
                 <%=link_to "Profile",admins_path,class:"btn btn-primary"  %>
               </div>
               <div class="pull-right">
-                <%= link_to "Sign Out", destroy_user_session_path,method: :delete,class:'btn btn-danger' %> 
+                 <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+
                 
               </div>             
             <%end%>

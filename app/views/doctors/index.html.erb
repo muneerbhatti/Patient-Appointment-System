@@ -107,7 +107,10 @@
                 <td>
                   <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-sm' %>
                   <%= link_to "Show", doctor_path(doctor), class: 'btn btn-primary btn-sm' %>
-                  <%= link_to "Delete", doctor_path(doctor), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger btn-sm' %>
+                 <%= link_to 'Delete', doctor_path(doctor), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+
+
+
                 </td>
               <% elsif current_user.userable_type == "Doctor" %>
                 <td>

@@ -1,14 +1,12 @@
 class PaymentsController<ApplicationController
 	 def index
-    #     if current_user.userable_type == "Doctor"
-    #     current_doctor = current_user.userable
-    #     @payments = current_doctor.payments
-    # elsif current_user.userable_type == "Patient"
-    #    current_patient = current_user.userable
-    #    @payments = current_patient.payments
-    # else
+        if current_user.userable_type == "Patient"
+
+       current_patient = current_user.userable
+       @payments = current_patient.payments
+    else
       @payments = Payment.all
-    # end
+    end
   end
 	def new
 		@payment=Payment.new
