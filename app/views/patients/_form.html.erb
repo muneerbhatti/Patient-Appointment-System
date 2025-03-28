@@ -1,56 +1,56 @@
-<%=form_with model: @patient do |form| %>
-<div class="content-body">
-<div class="row">
+<%= form_with model: @patient do |form| %>
+  <div class="content-body">
+    <div class="row">
 
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :Name, class:'mb-3' %>
-			<%=form.text_field :Name, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :CNIC, class:'mb-3' %>
-			<%=form.text_field :CNIC, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :ContactNo, class:'mb-3' %>
-			<%=form.text_field :PhoneNo, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-			<div class="form-group">
-			<%=form.label :Email, class:'mb-3' %>
-			<%=form.text_field :email, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :Gender, class:'mb-3' %>
-			<%=form.text_field :Gender, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :Address, class:'mb-3' %>
-			<%=form.text_field :Address, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<div class="form-group">
-			<%=form.label :Date_of_birth, class:'mb-3' %>
-			<%=form.text_field :date_of_birth, class:'form-control form-control-lg' %>
-		</div>
-	</div>
-	<div class="col-lg-5">
-		<%=form.submit class:'btn btn-primary btn-lg' %>
-		<%=link_to "Back to patient",patients_path, class:'btn btn-inf btn-lg' %>
-	</div>
-</div>
-</div>
-<%end%>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :Name, class: 'mb-3' %>
+          <%= form.text_field :Name, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :CNIC, class: 'mb-3' %>
+          <%= form.text_field :CNIC, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :ContactNo, class: 'mb-3' %>
+          <%= form.text_field :PhoneNo, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :Email, class: 'mb-3' %>
+          <%= form.text_field :email, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :Gender, class: 'mb-3' %>
+          <%= form.text_field :Gender, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :Address, class: 'mb-3' %>
+          <%= form.text_field :Address, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="form-group">
+          <%= form.label :Date_of_birth, class: 'mb-3' %>
+          <%= form.text_field :date_of_birth, class: 'form-control form-control-lg' %>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <%= form.submit class: 'btn btn-primary btn-lg' %>
+        <%= link_to "Back to patient", patients_path, class: 'btn btn-inf btn-lg' %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <%# <style type="text/css">
   .content-body{

@@ -1,182 +1,184 @@
 <div class="col-lg-12">
-	<div class="card ">
-		<div class="card-body">
-			<h1 class="text-center">Patient Infermation</h1>
-		</div>
-		 <p class="notice"><%= notice %></p>
-	</div>
-	<%if current_user.userable_type=="Admin" %>
-	
-	<div class="col-lg-4 search-bar">
-    <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
+  <div class="card ">
+    <div class="card-body">
+      <h1 class="text-center">Patient Infermation</h1>
+    </div>
+    <p class="notice"><%= notice %></p>
+  </div>
+  <% if current_user.userable_type == "Admin" %>
+
+    <div class="col-lg-4 search-bar">
+      <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
         <div class="input-group justify-content-center">
-            <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
-            <span class="input-group-btn">
-                <%= form.submit "Search", class: "btn btn-primary" %>
-            </span>
+          <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </span>
         </div>
-    <% end %>
-</div>
+      <% end %>
+    </div>
+    <br>
+    <div class="abc">
+      <%= link_to 'New patient', new_patient_path, class: 'btn btn-primary btn-lg' %>
+    </div>
+  <% elsif current_user.userable_type == "Reception" %>
 
-
-   <br>
-   <div class="abc">
-   	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
-   </div>
-   <%elsif current_user.userable_type=="Reception" %>
-
-	<div class="col-lg-4 search-bar">
-    <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
+    <div class="col-lg-4 search-bar">
+      <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
         <div class="input-group justify-content-center">
-            <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
-            <span class="input-group-btn">
-                <%= form.submit "Search", class: "btn btn-primary" %>
-            </span>
+          <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </span>
         </div>
-    <% end %>
-</div>
-<br>
-   <div class="abc">
-   	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
-   </div>  
-<%end%>
+      <% end %>
+    </div>
+    <br>
+    <div class="abc">
+      <%= link_to 'New patient', new_patient_path, class: 'btn btn-primary btn-lg' %>
+    </div>
+  <% end %>
 
-	<%if current_user.userable_type=="Reception" ||current_user.userable_type=="Admin" ||current_user.userable_type=="Doctor"  %>
-	</div>
-	<table class="table table-borderd">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>CNIC</th>
-				<th>Contact</th>
-				<th>Email</th>
-				<th>Address</th>
-				<th>Gender</th>
-				<th>Date_of_birth</th>
-			</tr>
-		</thead>
-		<tbody>
-            
-			<% @patients.each do |patient| %>
-
-			<tr>
-				<td><%=patient.id %></td>
-				<td><%=patient.Name %></td>
-				<td><%=patient.CNIC %></td>
-				<td><%=patient.PhoneNo %></td>
-				<td><%=patient.email %></td>
-				<td><%=patient.Address%></td>
-				<td><%=patient.Gender %></td>
-				<td><%=patient.date_of_birth%></td>
-				<%if current_user.userable_type=="Admin" ||current_user.userable_type== "Reception" %>
-
-		        <td>
-
-        <div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
-            <div class="dropdown-content">
-             <%= link_to "Edit", edit_patient_path(patient), class: "dropdown-item btn-primary" %>
-             <%= link_to "Show", patient_path(patient), class: "dropdown-item btn-info" %>
-             <%= button_to "Delete", patient_path(patient), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "dropdown-item btn-danger btn-lg " %>
-            </div>
-        </div>
-
-		        </td>
-		     
-			</tr>
-	
-				 <%end %>
-			<% end %>
-		</tbody>
-	</table>
-</div>
- <% elsif current_user.userable_type == "Patient" %>
-      <div class="col-lg-12">
-        <div class="row">
-          <% @patients.each do |patient| %>
-            <div class="card1">
-              <%= image_tag "avatar5.png", alt: "Patient Profile", style: "width:100%" %>
-              <h1><%= patient.Name %></h1>
-              
-              <p>Email: <%= patient.email %></p>
-              <p>Contact: <%= patient.PhoneNo %></p>
-              <p>CNIC <%=patient.CNIC %> </p>
-              <p>Address: <%= patient.Address %></p>
-              <p>Gender: <%=patient.Gender  %> </p>
-              <p>Date_of_Brith:<%=patient.date_of_birth %></p>
-              <%=link_to "Edit",edit_patient_path(patient),class:"btn1 btn-primary btn-lg" %>
-            </div>
+  <% if current_user.userable_type == "Reception" || current_user.userable_type == "Admin" || current_user.userable_type == "Doctor" %>
+    </div>
+    <table id="patients-table" class="table table-bordered">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>CNIC</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Gender</th>
+        <th>Date of Birth</th>
+        <% if ["Admin", "Reception", "Doctor"].include?(current_user.userable_type) %>
+          <th>Actions</th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody>
+      <% @patients.each do |patient| %>
+        <tr>
+          <td><%= patient.id %></td>
+          <td><%= patient.Name %></td>
+          <td><%= patient.CNIC %></td>
+          <td><%= patient.PhoneNo %></td>
+          <td><%= patient.email %></td>
+          <td><%= patient.Address %></td>
+          <td><%= patient.Gender %></td>
+          <td><%= patient.date_of_birth %></td>
+          <% if ["Admin", "Reception"].include?(current_user.userable_type) %>
+            <td>
+              <div class="dropdown">
+                <button class="dropbtn">Actions</button>
+                <div class="dropdown-content">
+                  <%= link_to "Edit", edit_patient_path(patient), class: "dropdown-item btn-primary" %>
+                  <%= link_to "Show", patient_path(patient), class: "dropdown-item btn-info" %>
+                  <%= button_to "Delete", patient_path(patient), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "dropdown-item btn-danger" %>
+                </div>
+              </div>
+            </td>
           <% end %>
-        </div>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    </div>
+  <% elsif current_user.userable_type == "Patient" %>
+    <div class="col-lg-12">
+      <div class="row">
+        <% @patients.each do |patient| %>
+          <div class="card1">
+            <%= image_tag "avatar5.png", alt: "Patient Profile", style: "width:100%" %>
+            <h1><%= patient.Name %></h1>
+
+            <p>Email: <%= patient.email %></p>
+            <p>Contact: <%= patient.PhoneNo %></p>
+            <p>CNIC <%= patient.CNIC %> </p>
+            <p>Address: <%= patient.Address %></p>
+            <p>Gender: <%= patient.Gender %> </p>
+            <p>Date_of_Brith:<%= patient.date_of_birth %></p>
+            <%= link_to "Edit", edit_patient_path(patient), class: "btn1 btn-primary btn-lg" %>
+          </div>
+        <% end %>
       </div>
-<%end%>
+    </div>
+  <% end %>
 
-<style>
+  <style>
 
-	.abc{
-		padding: 20px;
-	}
+      .abc {
+          padding: 20px;
+      }
 
-   .search-bar{
-		position: relative;
-		left: 500px;
-		top:20px;
-	}
-	.card1 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-.btn1 {
-    display: inline-block;
-  font-size: 20px;
-  padding: 6px 135px;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.3s ease;  
-}
+      .search-bar {
+          position: relative;
+          left: 500px;
+          top: 20px;
+      }
+
+      .card1 {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          max-width: 300px;
+          margin: auto;
+          text-align: center;
+          font-family: arial;
+      }
+
+      .btn1 {
+          display: inline-block;
+          font-size: 20px;
+          padding: 6px 135px;
+          background: #28a745;
+          color: white;
+          border: none;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+          transition: background 0.3s ease;
+      }
 
 
+      .dropbtn {
+          background-color: #04AA6D;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+      }
 
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
+      .dropdown {
+          position: relative;
+          display: inline-block;
+      }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 100px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+      }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 100px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+      }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+      .dropdown-content a:hover {
+          background-color: #ddd;
+      }
 
-.dropdown-content a:hover {background-color: #ddd;}
+      .dropdown:hover .dropdown-content {
+          display: block;
+      }
 
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-</style>
+      .dropdown:hover .dropbtn {
+          background-color: #3e8e41;
+      }
+  </style>

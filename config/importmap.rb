@@ -9,4 +9,6 @@ pin "jquery", to: "https://code.jquery.com/jquery-3.6.0.min.js"
 pin "bootstrap", to: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
 pin "admin-lte", to: "https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"
 pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+pin "vanilla-nested", to: "vanilla_nested.js", preload: true
+
 

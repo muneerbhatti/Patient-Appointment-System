@@ -1,69 +1,71 @@
 <div class="col-lg-12">
-	<div class="card">
-		<div class="card-body">
-			<h1 class="text-center">Payment Infermation</h1>
-			<%if current_user.userable_type=="Reception"%>
-		</div>
-		     <%=link_to "New payment",new_payment_path,class:'btn btn-primaty btn-lg' %>
-		<%elsif current_user.userable_type=="Patient" %>
-              <%=link_to "New payment",new_payment_path,class:'btn btn-primaty btn-lg' %>
-              <%else%>
-             <%end%>
-		<table class="table table-header">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Amount</th>
-					<th>Payment_type</th>
-					<th>Details</th>
-				
-					<th>Token</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @payments.each do |payment|%>
-				<tr>
-					<td><%=payment.id %></td>
-					<td><%=payment.amount %></td>
-					<td><%=payment.payment_type %></td>
-					<td><%=payment.detail %></td>
-				
-					<td><%=payment.token_id %></td>
-					<td>
-					<%if current_user.userable_type=="Reception"%>
-						<%=link_to "Show",payment_path(payment),class:'abc btn btn-primaty btn-lg' %>
-						<%=link_to "Edit",edit_payment_path(payment),class:'btn btn-primaty btn-lg' %>
-						<%=link_to "Delete",payment_path(payment),class:'ab btn btn-primaty btn-lg' %>
-					<%elsif current_user.userable_type=="Patient" %>
-                      <%=link_to "Show",payment_path(payment),class:'abc btn btn-primaty btn-lg' %>
-						<%=link_to "Edit",edit_payment_path(payment),class:'btn btn-primaty btn-lg' %>
-						<%=link_to "Delete",payment_path(payment),class:'ab btn btn-primaty btn-lg' %>
-						<%else%>
-						 <%=link_to "Show",payment_path(payment),class:'abc btn btn-primaty btn-lg' %>
-						<%end%>
-					</td>
-				</tr>
-				<%end%>
-			</tbody>
-		</table>
-	</div>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="text-center">Payment Infermation</h1>
+      <% if current_user.userable_type == "Reception" %>
+        </div>
+        <%= link_to "New payment", new_payment_path, class: 'btn btn-primaty btn-lg' %>
+      <% elsif current_user.userable_type == "Patient" %>
+        <%= link_to "New payment", new_payment_path, class: 'btn btn-primaty btn-lg' %>
+      <% else %>
+      <% end %>
+      <table class="table table-header">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Amount</th>
+          <th>Payment_type</th>
+          <th>Details</th>
+
+          <th>Token</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @payments.each do |payment| %>
+          <tr>
+            <td><%= payment.id %></td>
+            <td><%= payment.amount %></td>
+            <td><%= payment.payment_type %></td>
+            <td><%= payment.detail %></td>
+
+            <td><%= payment.token_id %></td>
+            <td>
+              <% if current_user.userable_type == "Reception" %>
+                <%= link_to "Show", payment_path(payment), class: 'abc btn btn-primaty btn-lg' %>
+                <%= link_to "Edit", edit_payment_path(payment), class: 'btn btn-primaty btn-lg' %>
+                <%= link_to "Delete", payment_path(payment), class: 'ab btn btn-primaty btn-lg' %>
+              <% elsif current_user.userable_type == "Patient" %>
+                <%= link_to "Show", payment_path(payment), class: 'abc btn btn-primaty btn-lg' %>
+                <%= link_to "Edit", edit_payment_path(payment), class: 'btn btn-primaty btn-lg' %>
+                <%= link_to "Delete", payment_path(payment), class: 'ab btn btn-primaty btn-lg' %>
+              <% else %>
+                <%= link_to "Show", payment_path(payment), class: 'abc btn btn-primaty btn-lg' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      </div>
 </div>
 <style type="text/css">
-	.btn{
-		color: white;
-		font: bold;
-		background-color: #1959;
-	}
-	.abc{
-		color: white;
-		font: bold;
-		background-color: rgb(8, 116, 200);
-	}
-	.ab{
-		color: white;
-		font: bold;
-		background-color: rgb(80, 96, 240);
-	}
+    .btn {
+        color: white;
+        font: bold;
+        background-color: #1959;
+    }
+
+    .abc {
+        color: white;
+        font: bold;
+        background-color: rgb(8, 116, 200);
+    }
+
+    .ab {
+        color: white;
+        font: bold;
+        background-color: rgb(80, 96, 240);
+    }
 
 
 </style>

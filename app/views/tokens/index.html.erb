@@ -1,116 +1,106 @@
 <div class="content-body">
-<div class="col-lg-12">
-	<div class="card">
-		<div class="card-body">
-			<h1 class="text-center">Token Infermation</h1>
-		</div>
-		 <p class="notice"><%= notice %></p>
-	</div>
-	<div class="col-lg-4 search_bar">
-		<%=form_with(url:tokens_path,method: :get, local: true, class:'search-form') do |form|%>
-		<div class="input-group ">
-			<%=form.text_field :search, placeholder: "search Token",class:'form-control' %>
-			<span class="input-group-btn">
-				<%=form.submit "search",class:'btn btn-primary' %>
-			</span>
-		</div>
-		<%end%>
-	</div>
-	<%if current_user.userable_type=="Reception" || current_user.userable_type=="Patient" ||
-	current_user.userable_type=="Admin" %>
-	<div class="abc">
-		<%=link_to 'New token',new_token_path, class:'btn btn-primary btn-lg' %>
-	</div>
-	<%end%>
-		</div>
-	<table class="table table-borderd">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Blood Pressure</th>
-				<th>Temperature</th>
-				<th>Weight</th>
-				<th>Doctor</th>
-				<th>Patient</th>
-				
-				
-			</tr>
-		</thead>
-		<tbody>
-			<% @tokens.each do |token| %>
-			<tr>
-				<td><%=token.id %></td>
-				<td><%=token.Blood_pressure %>  mmHg</td>
-				<td><%=token.Temperature %>  °F</td>
-				<td><%=token.Weight %> kg</td>
-
-				<td><a href="<%=doctor_path(token.doctor.id)%>"><%=token.doctor_id%>#<%=token.doctor.Name%></a></td>
-				<td><a href="<%=patient_path(token.patient.id)%>"><%=token.patient_id%>#<%=token.patient.Name%></a></td>
-			  <td>
-
-			  	<div>
-                <% if token.payment.present? %>
-                   <span class="badge <%= status_label_class(token.payment.status) %>">
-                      <%= token.payment.status.to_s.capitalize %>
-                    </span>
-               <% else %>
-                  <span class="badge bg-warning">Pending</span>
-              <% end %>
-           </td>
-           	<%if current_user.userable_type=="Reception" || current_user.userable_type=="Patient"|| current_user.userable_type=="Admin" %>
-         <td>
-           <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
-        </td>
-        <%end%>
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="text-center">Token Infermation</h1>
+      </div>
+      <p class="notice"><%= notice %></p>
+    </div>
+    <div class="col-lg-4 search_bar">
+      <%= form_with(url: tokens_path, method: :get, local: true, class: 'search-form') do |form| %>
+        <div class="input-group ">
+          <%= form.text_field :search, placeholder: "search Token", class: 'form-control' %>
+          <span class="input-group-btn">
+            <%= form.submit "search", class: 'btn btn-primary' %>
+          </span>
         </div>
+      <% end %>
+    </div>
+    <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" ||
+      current_user.userable_type == "Admin" %>
+      <div class="abc">
+        <%= link_to 'New token', new_token_path, class: 'btn btn-primary btn-lg' %>
+      </div>
+    <% end %>
+  </div>
+<table id="tokens-table" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Blood Pressure</th>
+      <th>Temperature</th>
+      <th>Weight</th>
+      <th>Doctor</th>
+      <th>Patient</th>
+      <th>Payment Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tokens.each do |token| %>
+      <tr>
+        <td><%= token.id %></td>
+        <td><%= token.Blood_pressure %> mmHg</td>
+        <td><%= token.Temperature %> °F</td>
+        <td><%= token.Weight %> kg</td>
+        <td>
+          <a href="<%= doctor_path(token.doctor.id) %>">
+            <%= token.doctor_id %>#<%= token.doctor.Name %>
+          </a>
+        </td>
+        <td>
+          <a href="<%= patient_path(token.patient.id) %>">
+            <%= token.patient_id %>#<%= token.patient.Name %>
+          </a>
+        </td>
+        <td>
+          <% if token.payment.present? %>
+            <span class="badge <%= status_label_class(token.payment.status) %>">
+              <%= token.payment.status.to_s.capitalize %>
+            </span>
+          <% else %>
+            <span class="badge bg-warning">Pending</span>
+          <% end %>
+        </td>
+        <td>
+          <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" || current_user.userable_type == "Admin" %>
+            <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
+          <% end %>
+
+          <% if current_user.userable_type == "Doctor" %>
+            <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
+            <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-info btn-sm" %>
+          <% elsif current_user.userable_type == "Patient" || current_user.userable_type == "Reception" %>
+            <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-sm' %>
+            <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-sm" %>
+            <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 
 
+    </div>
 
-        
-  <% if current_user.userable_type == "Doctor" %>
-      <td>
-      	<%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
-        <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-info btn-lg" %>
-      </td>
+    </div>
+    <style>
 
-  <% elsif current_user.userable_type == "Patient" %>
-  <td>
-    <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
-    <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
-    <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
-    <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
-  </td>
+        .abc {
+            padding: 34px;
+        }
 
-<% elsif current_user.userable_type == "Reception" %>
-  <td>
-    <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-lg' %>
-    <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-lg" %>
-    <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %> 
-    <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-lg' %>
-  </td>
-<% end %>
+        .search_bar {
+            position: relative;
+            left: 500px;
+            top: 10px;
+        }
 
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
+        .content-body {
+            margin-left: 150px;
+        }
 
-</div>
-<style>
-
-	.abc{
-		padding: 34px;
-	}
-    .search_bar{
-             position: relative;
-             left: 500px;
-             top: 10px;
-    }
-  
-  .content-body{
-    margin-left: 150px;
-  }
-
-</style>
+    </style>
