@@ -1,57 +1,67 @@
 <div class="card">
-    <div class="card-header">
-       <h1 class="text-center">Token Information</h1> 
-    </div>
-    <div  class="card-body">
-        <table class="table table-borderd">
-            <thead>
-                <tr>
-                     <th>Name:</th><td><%= @token.patient.Name %></td>
-                     <th>CNIC:</th><td><%= @token.patient.CNIC %></td>
-                     <th>Gender:</th><td><%=@token.patient.Gender %></td>
-                </tr>
-                <tr>
-                    <th>Address:</th><td><%=@token.patient.Address%></td>
-                    <th>Phone:</th><td><%= @token.patient.PhoneNo %></td>
-                    <th>Age:</th><td><%= ((Time.zone.now - @token.patient.date_of_birth.to_time) / 1.year.seconds).to_i if @token.patient.date_of_birth %></td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                     <th>Blood Pressure:</th><td><%= @token.Blood_pressure %></td>
-               
-                    <th>Temperature:</th><td><%= @token.Temperature %></td>
-               
-                     <th>Weight:</th><td><%= @token.Weight %></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  <div class="card-header">
+    <h1 class="text-center">Token Information</h1>
+  </div>
+  <div class="card-body">
+    <table class="table table-borderd">
+      <thead>
+      <tr>
+        <th>Name:</th>
+        <td><%= @token.patient.Name %></td>
+        <th>CNIC:</th>
+        <td><%= @token.patient.CNIC %></td>
+        <th>Gender:</th>
+        <td><%= @token.patient.Gender %></td>
+      </tr>
+      <tr>
+        <th>Address:</th>
+        <td><%= @token.patient.Address %></td>
+        <th>Phone:</th>
+        <td><%= @token.patient.PhoneNo %></td>
+        <th>Age:</th>
+        <td><%= ((Time.zone.now - @token.patient.date_of_birth.to_time) / 1.year.seconds).to_i if @token.patient.date_of_birth %></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Blood Pressure:</th>
+        <td><%= @token.Blood_pressure %></td>
+
+        <th>Temperature:</th>
+        <td><%= @token.Temperature %></td>
+
+        <th>Weight:</th>
+        <td><%= @token.Weight %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 
 
- <style type="text/css">
-    .table{
+<style type="text/css">
+    .table {
         white-space: nowrap;
-        overflow:hidden ;
+        overflow: hidden;
         text-overflow: ellipsis;
-         line-height: 40px;
+        line-height: 40px;
 
 
-         
     }
 
-    .card{
+    .card {
         border: 2px solid #ddd;
         background-color: #f9f9f9;
     }
-    .card-body{
+
+    .card-body {
         border: 1px solid #ddd;
     }
-     .text-center{
+
+    .text-center {
         text-align: center;
-     }
-  
-     
- </style>   
+    }
+
+
+</style>

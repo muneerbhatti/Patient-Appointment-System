@@ -1,7 +1,7 @@
 class TokenPolicy < ApplicationPolicy
   def show?
     true
-  endrails 
+  end
 
   class Scope < ApplicationPolicy::Scope
     # NOTE: Be explicit about which records you allow access to!

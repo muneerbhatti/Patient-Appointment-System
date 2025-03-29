@@ -1,66 +1,65 @@
 <div class="col-lg-12">
-	<div class="card">
-		<div class="card-body">
-			<h1 class="text-center">Doctor Infermation</h1>
-			 <p class="notice"><%= notice %></p>
-          
-		</div>
-		  
-           
-      	<div class="col-lg-4 text-center">
-               <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
-          <div class="input-group justify-content-center">
-               <%= form.text_field :search, placeholder: "Search doctors", class: "form-control" %>
-            <span class="input-group-btn">
-                <%= form.submit "Search", class: "btn btn-primary" %>
-            </span>
-          </div>
-          <% end %>
-       </div>
-       <div class="abc">
-       	   <%=link_to 'New doctor',new_doctor_path, class:'btn btn-primary btn-lg' %>
-       	   <%=link_to "Perception",perception_path(doctor),class:"btn btn-info btn-lg" %>
-       </div>
-		
-	</div>
-	<table class="table table-borderd">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Contect</th>
-				<th>Address</th>
-				<th>Specialization</th>
-				<th>Eprince</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @doctors.each do |doctor| %>
-			<tr>
-				<td><%=doctor.id %></td>
-				<td><%=doctor.Name %></td>
-				<td><%=doctor.Email %></td>
-				<td><%=doctor.ConectNo %></td>
-				<td><%=doctor.Address%></td>
-				<td><%=doctor.Specialization %></td>
-				<td><%=doctor.Exprince_year%></td>
-		        <td>
-		        	<%=link_to "Edit", edit_doctor_path(doctor),class:'btn btn-info btn-lg' %>
-		        	<%=link_to 'Show',doctor_path(doctor),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete', doctor_path(doctor), method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn btn-info btn-lg'%>
-		        </td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="text-center">Doctor Infermation</h1>
+      <p class="notice"><%= notice %></p>
+
+    </div>
+
+
+    <div class="col-lg-4 text-center">
+      <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
+        <div class="input-group justify-content-center">
+          <%= form.text_field :search, placeholder: "Search doctors", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= form.submit "Search", class: "btn btn-primary" %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <div class="abc">
+      <%= link_to 'New doctor', new_doctor_path, class: 'btn btn-primary btn-lg' %>
+
+    </div>
+
+  </div>
+  <table class="table table-borderd">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Contect</th>
+      <th>Address</th>
+      <th>Specialization</th>
+      <th>Eprince</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @doctors.each do |doctor| %>
+      <tr>
+        <td><%= doctor.Name %></td>
+        <td><%= doctor.Email %></td>
+        <td><%= doctor.ContactNo %></td> <!-- Fixed typo -->
+        <td><%= doctor.Address %></td>
+        <td><%= doctor.Specialization %></td>
+        <td><%= doctor.experience_year %></td> <!-- Fixed typo -->
+        <td>
+          <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-lg' %>
+          <%= link_to 'Show', doctor_path(doctor), class: 'btn btn-primary btn-lg' %>
+          <%= link_to 'Delete', doctor_path(doctor), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
 
 <style type="text/css">
-	.abc{
-		padding: 35px;
-	}
+    .abc {
+        padding: 35px;
+    }
 </style>
 
 
