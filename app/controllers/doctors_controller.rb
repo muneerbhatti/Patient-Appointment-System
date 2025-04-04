@@ -52,17 +52,14 @@ end
 
   def show
   end
- def delete
-   @doctor = Doctor.find(params[:id])
- end
-  def destroy
-     @doctor = Doctor.find(params[:id])
-    if @doctor.destroy
-      redirect_to doctors_path, notice: '✅ Doctor was successfully deleted.'
-    else
-      redirect_to doctors_path, alert: '⚠️ Failed to delete the doctor.'
-    end
+def destroy
+  @doctor = Doctor.find(params[:id])
+  @doctor.destroy
+  respond_to do |format|
+    format.html { redirect_to doctors_url, notice: "Doctor was successfully deleted." }
+    format.json { head :no_content }
   end
+end
 
   private
 

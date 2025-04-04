@@ -22,3 +22,5 @@ def set_status_based_on_payment
 
 
 end
+
+# has many through Association ...............

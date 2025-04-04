@@ -1,4 +1,6 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import Rails from "@rails/ujs"
+Rails.start()
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./pas/jQuery-2.1.3.min"
@@ -19,5 +21,6 @@ import "./pas/app.js"
 import "./pas/dashboard.js"
 import "./pas/demo.js"
 import "vanilla-nested";
-import Rails from "@rails/ujs";
-Rails.start();
+
+//= require rails-ujs
+//= require_tree .
