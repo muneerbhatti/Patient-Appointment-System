@@ -22,22 +22,22 @@
 </head>
 
 <body class="skin-blue">
-  <div class="wrapper">
-     <%= render 'shared/aside' %>
-     <%= render 'shared/header' %>
-   </div>
-  <div class='content-body'>
+<div class="wrapper">
+  <%= render 'shared/aside' %>
+  <%= render 'shared/header' %>
+</div>
+<div class='content-body'>
 
-     <p class="notice"><%= notice %></p> 
-     <p class="alert"><%= alert %></p> 
-       <%= yield %>
-  </div>
-  <%= render 'shared/footer' %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</div>
+<%= render 'shared/footer' %>
 </body>
 </html>
 
 <style type="text/css">
-  .content-body{
-    margin-left: 300px;
-  }
+    .content-body {
+        margin-left: 300px;
+    }
 </style>

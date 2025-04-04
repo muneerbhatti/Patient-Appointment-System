@@ -68,8 +68,9 @@ end
   end
 
   def doctor_params
-    params.require(:doctor).permit(:Name, :Email, :ContactNo, :Specialization, :experience_year, :Address)
+    params.require(:doctor).permit(:Name, :Email, :ContactNo, :Specialization, :experience_year, :Address, prescriptions_attributes: [:id, :name, :category, :formula, :token_id, :_destroy])
   end
+
 
   def set_layout
       current_user.userable_type.pluralize.downcase

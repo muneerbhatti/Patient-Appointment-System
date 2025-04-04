@@ -4,7 +4,7 @@ class Patient < ApplicationRecord
     validates :email, presence: true, uniqueness: true 
 
 	has_one :user, as: :userable, dependent: :destroy
-     has_many :tokens
+     has_many :tokens, dependent: :destroy
      has_many :payments, through: :tokens
 
     after_create :set_devise_user

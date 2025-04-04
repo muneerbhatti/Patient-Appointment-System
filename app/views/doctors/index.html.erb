@@ -5,7 +5,7 @@
       <p class="notice"><%= notice %></p>
     </div>
 
-    <% if current_user.userable_type == "Admin" || current_user.userable_type == "Reception" %>  
+    <% if current_user.userable_type == "Admin" || current_user.userable_type == "Reception" %>
       <div class="col-lg-4 search-bar">
         <%= form_with(url: doctors_path, method: :get, local: true, class: 'search-form') do |form| %>
           <div class="input-group justify-content-center">
@@ -34,91 +34,93 @@
           <p><%= link_to "Edit", edit_doctor_path(doctor), class: "btn1 btn-info" %></p>
         </div>
       <% end %>
-<% elsif current_user.userable_type == "Patient" %>
-  <div class="col-sm-12">
-    <div class="btn-group w-100 mb-2">
-      <div class="row">
-        <% @doctors.each do |doctor| %>
-          <div class="card2">
-            <%= image_tag "avatar5.png", alt: "Doctor Profile", style: "width:100%" %>
-            <h1><%= doctor.Name %></h1>
-            <p class="title">Specialization: <%= doctor.Specialization %></p>
-            <p>Email: <%= doctor.Email %></p>
-            <p>Contact: <%= doctor.ContactNo %></p>
-            <p>Address: <%= doctor.Address %></p>
-            <p>Experience: <%= doctor.experience_year %> years</p>
+    <% elsif current_user.userable_type == "Patient" %>
+      <div class="col-sm-12">
+        <div class="btn-group w-100 mb-2">
+          <div class="row">
+            <% @doctors.each do |doctor| %>
+              <div class="card2">
+                <%= image_tag "avatar5.png", alt: "Doctor Profile", style: "width:100%" %>
+                <h1><%= doctor.Name %></h1>
+                <p class="title">Specialization: <%= doctor.Specialization %></p>
+                <p>Email: <%= doctor.Email %></p>
+                <p>Contact: <%= doctor.ContactNo %></p>
+                <p>Address: <%= doctor.Address %></p>
+                <p>Experience: <%= doctor.experience_year %> years</p>
 
-            <!-- Call Button -->
-            <a href="tel:<%= doctor.ContactNo %>" style="text-decoration: none;">
-              <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                <i class="fa fa-phone"></i> Call
-              </button>
-            </a>
+                <!-- Call Button -->
+                <a href="tel:<%= doctor.ContactNo %>" style="text-decoration: none;">
+                  <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+                    <i class="fa fa-phone"></i> Call
+                  </button>
+                </a>
 
-            <!-- WhatsApp Button -->
-            <div>
-              <a href="https://wa.me/<%= doctor.ContactNo %>" target="_blank" style="text-decoration: none;">
-                <button style="background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
-                  <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", width: 20, height: 20, style: "margin-right: 5px;" %>
-                  WhatsApp
-                </button>
-              </a>
-            </div>
+                <!-- WhatsApp Button -->
+                <div>
+                  <a href="https://wa.me/<%= doctor.ContactNo %>" target="_blank" style="text-decoration: none;">
+                    <button style="background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
+                      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", width: 20, height: 20, style: "margin-right: 5px;" %>
+                      WhatsApp
+                    </button>
+                  </a>
+                </div>
+              </div>
+            <% end %>
+
+            <!-- Fill Empty Spaces to Keep 4-Column Grid -->
+            <% extra_spaces = (4 - (@doctors.count % 4)) % 4 %>
+            <% extra_spaces.times do %>
+              <div class="card2" style="visibility: hidden;"></div>
+            <% end %>
+
           </div>
-        <% end %>
-
-        <!-- Fill Empty Spaces to Keep 4-Column Grid -->
-        <% extra_spaces = (4 - (@doctors.count % 4)) % 4 %>
-        <% extra_spaces.times do %>
-          <div class="card2" style="visibility: hidden;"></div>
-        <% end %>
-
+        </div>
       </div>
-    </div>
-  </div>
-    <% else %> 
+    <% else %>
       <table class="table-bordered table">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-            <th>Address</th>
-            <th>Specialization</th>
-            <th>Experience</th>
-            <% if ["Admin", "Reception", "Doctor"].include?(current_user.userable_type) %>
-              <th>Actions</th>
-            <% end %>
-          </tr>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Specialization</th>
+          <th>Experience</th>
+          <% if ["Admin", "Reception", "Doctor"].include?(current_user.userable_type) %>
+            <th>Actions</th>
+          <% end %>
+        </tr>
         </thead>
         <tbody>
-          <% @doctors.each do |doctor| %>
-            <tr>
-              <td><%= doctor.id %></td>
-              <td><%= doctor.Name %></td>
-              <td><%= doctor.Email %></td>
-              <td><%= doctor.ContactNo %></td>
-              <td><%= doctor.Address %></td>
-              <td><%= doctor.Specialization %></td>
-              <td><%= doctor.experience_year %></td>
+        <% @doctors.each do |doctor| %>
+          <tr>
+            <td><%= doctor.id %></td>
+            <td><%= doctor.Name %></td>
+            <td><%= doctor.Email %></td>
+            <td><%= doctor.ContactNo %></td>
+            <td><%= doctor.Address %></td>
+            <td><%= doctor.Specialization %></td>
+            <td><%= doctor.experience_year %></td>
 
-              <% if current_user.userable_type == "Admin" || current_user.userable_type == "Reception" %>
-                <td>
-                  <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-sm' %>
-                  <%= link_to "Show", doctor_path(doctor), class: 'btn btn-primary btn-sm' %>
-                 <%= link_to 'Delete', doctor_path(doctor), method: :delete, data: { turbo_method: :delete, confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-
-
-
-                </td>
-              <% elsif current_user.userable_type == "Doctor" %>
-                <td>
-                  <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-sm' %>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
+            <% if current_user.userable_type == "Admin" || current_user.userable_type == "Reception" %>
+              <td>
+                <div class="dropdown">
+                  <button class="dropbtn">Dropdown</button>
+                  <div class="dropdown-content">
+                    <%= link_to "Edit", edit_doctor_path(doctor), class: "dropdown-item btn-primary" %>
+                    <%= link_to "Show", doctor_path(doctor), class: "dropdown-item btn-info" %>
+                    <%= button_to "Delete", doctor_path(doctor), method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "dropdown-item btn-danger btn-lg " %>
+                  </div>
+                </div>
+              </td>
+            <% elsif current_user.userable_type == "Doctor" %>
+              <td>
+                <%= link_to "Edit", edit_doctor_path(doctor), class: 'btn btn-info btn-sm' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     <% end %>
@@ -126,101 +128,140 @@
 </div>
 
 <style type="text/css">
-  .table {
-    position: relative;
-    top: 20px;
-  }
-  .abc {
-    position: relative;
-    top: 20px;
-    padding: 35px;
-  }
-  .search-bar {
-    position: relative;
-    left: 500px;
-    top: 20px;
-  }
-  .card1 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-.btn1 {
-    display: inline-block;
-  font-size: 20px;
-  padding: 6px 135px;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: background 0.3s ease;  
-}
+    .table {
+        position: relative;
+        top: 20px;
+    }
 
-<%# .row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dynamic columns */
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  justify-content: center; /* Centers last row */
-} %>
+    .abc {
+        position: relative;
+        top: 20px;
+        padding: 35px;
+    }
 
+    .search-bar {
+        position: relative;
+        left: 500px;
+        top: 20px;
+    }
 
+    .card1 {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        max-width: 300px;
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
 
+    .btn1 {
+        display: inline-block;
+        font-size: 20px;
+        padding: 6px 135px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
- .row {
-   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; 
- justify-content: space-between; /* Ensures even spacing */
-  gap: 50px; /* Adds space between cards */
- 
-
-}
- 
-.card2 {
-  border: 1px solid #ccc;
-  padding: 15px;
-  text-align: center;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-} 
+    <%# .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Dynamic columns */
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-content: center; /* Centers last row */
+    } %>
 
 
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        justify-content: space-between; /* Ensures even spacing */
+        gap: 50px; /* Adds space between cards */
 
 
+    }
+
+    .card2 {
+        border: 1px solid #ccc;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
 
 
-.title {
-  color: grey;
-  font-size: 18px;
-}
+    .title {
+        color: grey;
+        font-size: 18px;
+    }
 
 
-button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
+    button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
 
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
+    a {
+        text-decoration: none;
+        font-size: 22px;
+        color: black;
+    }
 
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
+    button:hover, a:hover {
+        opacity: 0.7;
+    }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 100px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
 </style>

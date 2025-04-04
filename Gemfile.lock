@@ -195,7 +195,7 @@ GEM
     public_suffix (6.0.1)
     puma (6.6.0)
       nio4r (~> 2.0)
-    pundit (2.4.0)
+    pundit (2.5.0)
       activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.10)
@@ -353,7 +353,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   puma (>= 5.0)
-  pundit
+  pundit (~> 2.5)
   rails (~> 7.2.1, >= 7.2.1.1)
   rubocop-rails-omakase
   selenium-webdriver
