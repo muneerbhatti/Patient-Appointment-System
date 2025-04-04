@@ -5,8 +5,9 @@
 		</div>
 		 <p class="notice"><%= notice %></p>
 	</div>
+	<%if current_user.userable_type=="Admin" %>
 	
-	<div class="col-lg-4 text-center">
+	<div class="col-lg-4 search-bar">
     <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
         <div class="input-group justify-content-center">
             <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
@@ -22,8 +23,25 @@
    <div class="abc">
    	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
    </div>
+   <%elsif current_user.userable_type=="Reception" %>
 
-	
+	<div class="col-lg-4 search-bar">
+    <%= form_with(url: patients_path, method: :get, local: true, class: 'search-form') do |form| %>
+        <div class="input-group justify-content-center">
+            <%= form.text_field :search, placeholder: "Search patients", class: "form-control" %>
+            <span class="input-group-btn">
+                <%= form.submit "Search", class: "btn btn-primary" %>
+            </span>
+        </div>
+    <% end %>
+</div>
+<br>
+   <div class="abc">
+   	  <%=link_to 'New patient',new_patient_path, class:'btn btn-primary btn-lg' %>
+   </div>  
+<%end%>
+
+	<%if current_user.userable_type=="Reception" ||current_user.userable_type=="Admin" ||current_user.userable_type=="Doctor"  %>
 	</div>
 	<table class="table table-borderd">
 		<thead>
@@ -32,33 +50,59 @@
 				<th>Name</th>
 				<th>CNIC</th>
 				<th>Contact</th>
+				<th>Email</th>
 				<th>Address</th>
 				<th>Gender</th>
 				<th>Date_of_birth</th>
 			</tr>
 		</thead>
 		<tbody>
+            
 			<% @patients.each do |patient| %>
+
 			<tr>
 				<td><%=patient.id %></td>
 				<td><%=patient.Name %></td>
 				<td><%=patient.CNIC %></td>
 				<td><%=patient.PhoneNo %></td>
+				<td><%=patient.email %></td>
 				<td><%=patient.Address%></td>
 				<td><%=patient.Gender %></td>
 				<td><%=patient.date_of_birth%></td>
+				<%if current_user.userable_type=="Admin" ||current_user.userable_type== "Reception" %>
 		        <td>
 		        	<%=link_to "Edit", edit_patient_path(patient),class:'btn btn-info btn-lg' %>
 		        	<%=link_to 'Show',patient_path(patient),class:'btn btn-primary btn-lg' %>
-		        	<%= link_to 'Delete', patient_path(patient), method: :delete, data: { confirm: 'Are you sure?' } ,class:'btn btn-info btn-lg'%>
+		        	<%= link_to 'Delete',patient_path(patient), data: { "turbo-method": :delete, confirm: 'Are you sure?' }, class: 'btn btn-info btn-lg' %>
 		        </td>
+		      
 			</tr>
+	
+				 <%end %>
 			<% end %>
 		</tbody>
 	</table>
 </div>
-
-
+ <% elsif current_user.userable_type == "Patient" %>
+      <div class="col-lg-12">
+        <div class="row">
+          <% @patients.each do |patient| %>
+            <div class="card1">
+              <%= image_tag "avatar5.png", alt: "Patient Profile", style: "width:100%" %>
+              <h1><%= patient.Name %></h1>
+              
+              <p>Email: <%= patient.email %></p>
+              <p>Contact: <%= patient.PhoneNo %></p>
+              <p>CNIC <%=patient.CNIC %> </p>
+              <p>Address: <%= patient.Address %></p>
+              <p>Gender: <%=patient.Gender  %> </p>
+              <p>Date_of_Brith:<%=patient.date_of_birth %></p>
+              <%=link_to "Edit",edit_patient_path(patient),class:"btn1 btn-primary btn-lg" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+<%end%>
 
 <style>
 
@@ -66,5 +110,28 @@
 		padding: 20px;
 	}
 
-
+   .search-bar{
+		position: relative;
+		left: 500px;
+		top:20px;
+	}
+	.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.btn1 {
+    display: inline-block;
+  font-size: 20px;
+  padding: 6px 135px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease;  
+}
 </style>

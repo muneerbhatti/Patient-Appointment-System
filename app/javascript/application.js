@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./pas/jQuery-2.1.3.min"
+//= require rails-ujs
 import "./pas/bootstrap.min.js"
 import "./pas/morris.min.js"
 import "./pas/jquery.sparkline.min.js"
@@ -17,3 +18,6 @@ import "./pas/fastclick.min.js"
 import "./pas/app.js"
 import "./pas/dashboard.js"
 import "./pas/demo.js"
+import "vanilla-nested";
+import Rails from "@rails/ujs";
+Rails.start();

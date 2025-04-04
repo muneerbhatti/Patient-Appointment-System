@@ -1,0 +1,34 @@
+<div class="col-lg-5">
+	<div class="card">
+		<div class="card-body">
+			<h1 class="text-center">Reception Infermation</h1>
+		</div>
+		<%=link_to "New Reception",new_reception_path,class:"btn btn-info btn-lg" %>
+	</div>
+	<table class="table-border table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>ContectNo</th>
+				<th>Address</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@receptions.each do |reception|%>
+			<tr>
+				<td><%=reception.id%></td>
+				<td><%=reception.Name%></td>
+				<td><%=reception.email%></td>
+				<td><%=reception.phoneno%></td>
+				<th><%=reception.address %></th>
+				<th>
+					<%=link_to "Edit",edit_reception_path(reception),class:"btn btn-primary btn-lg" %>
+					<%=link_to "Show",reception_path(reception),class:"btn btn-info btn-lg" %>
+				</th>
+			</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>

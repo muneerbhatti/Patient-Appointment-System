@@ -1,0 +1,57 @@
+<div class="content-body">
+<%= form_for  [@token, @prescriptions] do |form| %>
+<div class="row text-justify">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Type, class:'mb-3' %>
+			<%=form.text_field :category, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Name, class:'mb-3' %>
+			<%=form.text_field :name, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Formula, class:'mb-3' %>
+			<%=form.text_field :formula, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-lg-5">
+		<div class="form-group">
+			<%=form.label :Token, class:'mb-3' %>
+			<%=form.text_field :token_id, class:'form-control form-control-lg' %>
+		</div>
+	</div>
+	<div class="row">
+		 <div class="col-lg-5">
+		   <div class="form-group">
+			  <%=form.submit class:'btn btn_primary btn-lg' %>
+			  <%=link_to 'Back To Prescriptions', token_prescriptions_path,class:'btn btn_info btn-lg' %>
+		    </div>
+	      </div>
+	</div>
+	
+<%end%>
+</div>
+<style type="text/css">
+	.btn_primary{
+		background: #A0F;
+		color: white;
+	}
+	.btn_info{
+		background:  #0F0;
+		color: white;
+	}
+	.content-body{
+    margin-left: 150px;
+  }
+  .text-justify{
+  	 text-align: justify;
+  }
+</style>

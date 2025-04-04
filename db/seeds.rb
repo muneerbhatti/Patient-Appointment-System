@@ -8,4 +8,12 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-	
+	# self.create_user(email: self.Email, password:"123456")
+	# end
+d=Doctor.create( Name: "Ali", Email: "doctor@test.com", ContactNo: "123456", 
+	Address: "krk", Specialization: "test", expreince_year: "1 year")
+patient=Patient.create(Name:"subhan",CNIC:"654321", PhoneNo:"3213456", email:"patient@test.com", Gender:"M", 
+	Address:"Chungi amer sadhu, Lahore Pakistan", date_of_birth:"23-Jan-2007",)
+a=Admin.create(Name:"hashim",email:'admin@test.com',address:'krk')
+r=Reception.create(Name:'Nadeem',email:'reception@test.com',phoneno:'1234432',address:'kaly')
+

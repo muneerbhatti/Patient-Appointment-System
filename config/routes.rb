@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
+  root 'appointment#index'
   devise_for :users, controllers: {
       sessions: 'users/sessions'
-      
-      }
-
- root 'appointment#index'
-resources :doctors do
-    member do
-      get :perception
-    end
-  end
-
+    }
+  resources :receptions  
+  resources :admins
+  resources :doctors 
   resources :patients
-  resources :tokens
+  resources :tokens do
+    resources :prescriptions
+  end
   resources :payments
 end
-

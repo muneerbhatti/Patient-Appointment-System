@@ -3,15 +3,15 @@
 one:
   Name: MyString
   Email: MyString
-  ConectNo: MyString
+  ContactNo: MyString
   Address: MyString
   Specialization: MyString
-  Exprince_year: MyString
+  expreince_year: MyString
 
 two:
   Name: MyString
   Email: MyString
-  ConectNo: MyString
+  ContactNo: MyString
   Address: MyString
   Specialization: MyString
-  Exprince_year: MyString
+  expreince_year: MyString
