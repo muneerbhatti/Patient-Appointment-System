@@ -1,5 +1,11 @@
-<div class="wrapper-div">
-<%= form.text_field :name %>
-<%= link_to_remove_nested(form) %>
+
+<div class="nested-fields">
+<%= f.label :name, class:"mt-3" %>
+<%=f.text_area :name, placeholder: "Enter Madicine Name" %>
+ <%= link_to_remove_association "Delete", f ,class:"btn btn-danger mb-2"%>
 </div>
+
+
+
+
 

@@ -60,6 +60,6 @@ gem "devise", "~> 4.9"
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'pundit', '~> 2.5'
-gem 'vanilla_nested'
+gem "cocoon"
 gem "letter_opener", group: :development
 gem  'jquery-rails'
