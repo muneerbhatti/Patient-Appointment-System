@@ -14,9 +14,9 @@ class PaymentsController<ApplicationController
 	def create
 		@payment=Payment.new(amount: params[:payment][:amount],
 			payment_type: params[:payment][:payment_type],
+			status: params[:payment][:status],
 			detail: params[:payment][:detail],
 			token_id: params[:payment][:token_id])
-		
 		if @payment.save
 			redirect_to tokens_path,notice:"patients has been successfully payment"
 		else
@@ -40,7 +40,7 @@ class PaymentsController<ApplicationController
 
 private
 def parmas_payment
-	params.require(:payment).permit(:amount,:payment_type,:detail,:token_id)
+	params.require(:payment).permit(:amount,:payment_type,:detail,:token_id, :status)
 end
 end
 

@@ -5,9 +5,15 @@ class PrescriptionsController<ApplicationController
   end
 
   def new
-    @token = Token.find(params[:token_id])
-    @prescriptions= @token.prescriptions.build
+  @token = Token.find_by(id: params[:token_id])  # Use find_by to prevent an exception
+  if @token.nil?
+    redirect_to tokens_path, alert: "Token not found."
+    return
   end
+ 
+
+  @prescription = @token.prescriptions.build  # Use build instead of new
+end
 
   def create
     @token = Token.find(params[:token_id])
@@ -48,6 +54,6 @@ def destroy
   private
 
   def prescription_params
-    params.require(:prescription).permit(:category, :name, :formula, :token_id)
+    params.require(:prescription).permit(:category, :name, :formula, :token_id, medicines_attributes: [:id, :name, :medicine_type, :_destroy])
   end
 end

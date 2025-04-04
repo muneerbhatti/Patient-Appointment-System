@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :medicines
   root 'appointment#index'
   devise_for :users, controllers: {
       sessions: 'users/sessions'

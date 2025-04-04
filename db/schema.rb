@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_03_06_180017) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_03_065123) do
   create_table "admins", force: :cascade do |t|
     t.string "Name"
     t.string "email"
@@ -28,6 +28,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_06_180017) do
     t.string "experience_year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "medicines", force: :cascade do |t|
+    t.string "name"
+    t.integer "medicine_type", default: 0
+    t.integer "prescription_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prescription_id"], name: "index_medicines_on_prescription_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -50,7 +59,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_06_180017) do
     t.datetime "updated_at", null: false
     t.integer "method"
     t.integer "token_id"
-    t.integer "status"
+    t.integer "status", default: 0
   end
 
   create_table "prescriptions", force: :cascade do |t|
@@ -110,6 +119,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_03_06_180017) do
     t.index ["userable_type", "userable_id"], name: "index_users_on_userable"
   end
 
+  add_foreign_key "medicines", "prescriptions"
   add_foreign_key "prescriptions", "tokens"
   add_foreign_key "tokens", "doctors"
   add_foreign_key "tokens", "patients"
