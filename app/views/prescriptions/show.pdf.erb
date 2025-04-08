@@ -1,0 +1,116 @@
+<div class="card">
+  <div class="card-header">
+    <h1 class="text-center">Token Information</h1>
+  </div>
+  <div class="card-body">
+    <table class="table table-borderd">
+      <thead>
+      <tr>
+        <th>Name:</th>
+        <td><%= @token.patient.Name %></td>
+        <th>CNIC:</th>
+        <td><%= @token.patient.CNIC %></td>
+        <th>Gender:</th>
+        <td><%= @token.patient.Gender %></td>
+      </tr>
+      <tr>
+        <th>Address:</th>
+        <td><%= @token.patient.Address %></td>
+        <th>Phone:</th>
+        <td><%= @token.patient.PhoneNo %></td>
+        <th>Age:</th>
+        <td><%= ((Time.zone.now - @token.patient.date_of_birth.to_time) / 1.year.seconds).to_i if @token.patient.date_of_birth %></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>Blood Pressure:</th>
+        <td><%= @token.Blood_pressure %></td>
+
+        <th>Temperature:</th>
+        <td><%= @token.Temperature %></td>
+
+        <th>Weight:</th>
+        <td><%= @token.Weight %></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Prescription PDF</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4A90E2;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .label {
+      font-weight: bold;
+      color: #555;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Prescription Details</h1>
+
+<p><strong>Name:</strong> <%= @prescription.name %></p>
+<p><strong>Category:</strong> <%= @prescription.category %></p>
+<p><strong>Formula:</strong> <%= @prescription.formula %></p>
+<p><strong>Token ID:</strong> <%= @prescription.token_id %></p>
+  </div>
+</body>
+</html>
+
+
+<style type="text/css">
+    .table {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 40px;
+
+
+    }
+
+    .card {
+        border: 2px solid #ddd;
+        background-color: #f9f9f9;
+    }
+
+    .card-body {
+        border: 1px solid #ddd;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+
+</style>

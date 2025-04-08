@@ -41,6 +41,14 @@ end
   def show 
      @token=Token.find(params[:token_id])
      @prescription=Prescription.find(params[:id])
+     authorize(@prescription)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name"
+      end
+    end
   end
 def destroy
   @token=Token.find(params[:token_id])
