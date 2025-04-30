@@ -6,13 +6,14 @@ class TokensController < ApplicationController
 
     elsif current_user.userable_type == "Patient"
       current_patient = current_user.userable
-      @tokens = current_patient.tokens
+      @tokens = current_patient.tokens.includes(:prescription)
+      
 
     elsif current_user.userable_type == "Reception" || current_user.userable_type == "Admin"
       @tokens = Token.all
 
     else
-      @tokens = []
+         @tokens = Token.includes(:patient, :prescription).all
     end
   end
 

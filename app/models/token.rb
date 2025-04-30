@@ -2,23 +2,29 @@ class Token < ApplicationRecord
   belongs_to :doctor
   belongs_to :patient
   has_one :payment, dependent: :destroy
-  has_many :prescriptions, dependent: :destroy
-  accepts_nested_attributes_for :prescriptions, reject_if: :all_blank, allow_destroy: true
+    has_one :prescription , dependent: :destroy
+  # accepts_nested_attributes_for :prescriptions, reject_if: :all_blank, allow_destroy: true
   # enum status: { pending: 0, completed: 1, failed: 2, refunded: 3, canceled: 4 }
-  enum status: [:pending, :completed, :failed, :refunded, :canceled]
-before_save :set_status_based_on_payment
+  enum status: [:pending, :completed,  :canceled]
+before_create :set_pending_status
 
-def set_status_based_on_payment
-      if payment&.status == "completed"
-         self.status = :completed
-      elsif payment&.status == "failed"
-         self.status = :failed
-      elsif payment&.status == "refunded"
-       self.status = :refunded
+after_create :check_prescription_status
+
+
+private 
+
+def set_pending_status
+  self.status= 'pending'
+  end
+
+  def check_prescription_status 
+    if prescriptions.presend?
+      updated(status: 'completed' ) 
       else
-       self.status = :pending
-     end
-   end
+       updated(status: 'canceled') 
+    end
+ end
+
 
 
 end
