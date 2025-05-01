@@ -29,4 +29,3 @@ def set_pending_status
 
 end
 
-# has many through Association ...............
