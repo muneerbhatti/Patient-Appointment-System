@@ -49,6 +49,7 @@
                 <p>Experience: <%= doctor.experience_year %> years</p>
 
                 <!-- Call Button -->
+                
                 <a href="tel:<%= doctor.ContactNo %>" style="text-decoration: none;">
                   <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
                     <i class="fa fa-phone"></i> Call
@@ -56,7 +57,7 @@
                 </a>
 
                 <!-- WhatsApp Button -->
-                <div>
+                <div  style="margin-top: 5px;">
                   <a href="https://wa.me/<%= doctor.ContactNo %>" target="_blank" style="text-decoration: none;">
                     <button style="background-color: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
                       <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", width: 20, height: 20, style: "margin-right: 5px;" %>
@@ -64,6 +65,15 @@
                     </button>
                   </a>
                 </div>
+                <!-- New Token Button -->
+<div style="margin-top: 5px;">
+  <%= link_to new_token_path(doctor_id: doctor.id), style: "text-decoration: none;" do %>
+    <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
+      <i class="fa fa-plus-circle"></i> New Token
+    </button>
+  <% end %>
+</div>
+
               </div>
             <% end %>
 

@@ -18,6 +18,7 @@ class TokensController < ApplicationController
   end
 
   def new
+    @doctor = Doctor.find(params[:doctor_id])
     @token = Token.new
   end
 
