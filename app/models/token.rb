@@ -18,12 +18,14 @@ def set_pending_status
   end
 
   def check_prescription_status 
-    if prescriptions.presend?
-      updated(status: 'completed' ) 
-      else
-       updated(status: 'canceled') 
-    end
- end
+  if prescription&.presend?
+    update(status: 'completed')
+  else
+    update(status: 'canceled')
+  end
+end
+
+
 
 
 

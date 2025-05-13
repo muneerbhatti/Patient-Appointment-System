@@ -17,10 +17,20 @@ class TokensController < ApplicationController
     end
   end
 
-  def new
-    @doctor = Doctor.find(params[:doctor_id])
-    @token = Token.new
+ def new
+  if current_user.role == "patient"
+    if params[:doctor_id].present?
+      @doctor = Doctor.find(params[:doctor_id])
+    else
+      redirect_to doctors_path, alert: "Please select a doctor first." and return
+    end
+  elsif current_user.role == "receptionist"
+    @doctors = Doctor.all  # Used in the form to show a dropdown
   end
+
+  @token = Token.new
+end
+
 
   def create
     @token = Token.new(Blood_pressure: params[:token][:Blood_pressure],
