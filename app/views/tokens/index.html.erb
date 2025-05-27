@@ -6,16 +6,6 @@
       </div>
       <p class="notice"><%= notice %></p>
     </div>
-    <div class="col-lg-4 search_bar">
-      <%= form_with(url: tokens_path, method: :get, local: true, class: 'search-form') do |form| %>
-        <div class="input-group ">
-          <%= form.text_field :search, placeholder: "search Token", class: 'form-control' %>
-          <span class="input-group-btn">
-            <%= form.submit "search", class: 'btn btn-primary' %>
-          </span>
-        </div>
-      <% end %>
-    </div>
     <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" ||
       current_user.userable_type == "Admin" %>
       <div class="abc">
@@ -23,7 +13,7 @@
       </div>
     <% end %>
   </div>
-<table id="tokens-table" class="table table-bordered">
+<table id="example" class="display" style="width:100%">
   <thead>
     <tr>
       <th>ID</th>
@@ -57,7 +47,7 @@
         <td>
           <% if token.payment.present? %>
             <span class="badge <%= status_label_class(token.payment.status)  if token.payment.present?%>">
-              <%= token.payment.status %>
+              <%# <%= token.payment.status %> 
               <p>Paid</p>
               <%else%>
 
@@ -118,3 +108,12 @@
              
        }
     </style>
+
+
+
+    <script type="text/javascript" src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+
+    <script type="text/javascript">
+
+      new DataTable('#example');
+    </script>

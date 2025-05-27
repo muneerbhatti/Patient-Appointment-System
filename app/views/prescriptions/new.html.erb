@@ -1,75 +1,49 @@
 <div class="card-body">
-	<h1 class="text-center">New Perscription </h1>
+  <h1 class="text-center">New Prescription</h1>
 </div>
-<%#= render 'form'%>
- <%= form_for [@token, @prescription] do |form| %>
-    
-      <div class="row text-justify">
-        <div class="col-lg-5">
-          <div class="form-group">
-            <%= form.label :category, "Type", class: 'mb-3' %>
-            <%= form.text_field :category, class: 'form-control form-control-lg' %>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <div class="form-group">
-            <%= form.label :name, "Name", class: 'mb-3' %>
-            <%= form.text_field :name, class:'form-control form-control-lg' %>
-          </div>
-        </div>
-        <div class="col-lg-5">
-        	<div class="form-group">
-        		<%= form.label :formula, "Formula", class: 'mb-3' %>
-        		<%= form.text_field :formula, class: 'form-control form-control-lg' %>
-        	</div>
-        </div>
+
+<%= form_for [@token, @prescription] do |form| %>
+  <div class="row text-justify">
+    <div class="col-lg-5">
+      <div class="form-group">
+        <%= form.label :category, "Type", class: 'mb-3' %>
+        <%= form.text_field :category, class: 'form-control form-control-lg' %>
       </div>
-
-
-
-
-
-
-
-
-
-<%= link_to_add_nested(form, :medicines, '#medicines') %> 
-  <div id='medicines'>
-    <%= form.fields_for :medicines do |medicine_f| %>
-      <%= render 'medicine_fields', form: medicine_f %>
-    <% end %>
+    </div>
+    <div class="col-lg-5">
+      <div class="form-group">
+        <%= form.label :name, "Name", class: 'mb-3' %>
+        <%= form.text_field :name, class:'form-control form-control-lg' %>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="form-group">
+        <%= form.label :formula, "Formula", class: 'mb-3' %>
+        <%= form.text_field :formula, class: 'form-control form-control-lg' %>
+      </div>
+    </div>
   </div>
 
 
 
+  <!-- Cocoon Add Button -->
+ 
 
+  <div id="medicines">
+    <%= form.fields_for :medicines do |medicine_f| %>
+      <%= render 'medicine_fields', f: medicine_f %>
+    <% end %>
+     <%= link_to_add_association "Add Medicine", form, :medicines, data: {association_insertion_node: 'medicineses', association_insertion_method: :append}, class: "btn btn-success my-3" %>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <%= form.submit class: 'btn btn-primary ' %>
-       <%= link_to 'Back To Prescriptions', token_prescriptions_path, class: 'btn btn-info' %>
-<%end%>
+  <%= form.submit class: 'btn btn-primary' %>
+  <%= link_to 'Back To Prescriptions', token_prescriptions_path, class: 'btn btn-info' %>
+<% end %>
 
 <style type="text/css">
- .content-body {
-              margin-left: 300px;
-         }
-
+  .content-body {
+    margin-left: 300px;
+  }
 </style>
 
-       
+

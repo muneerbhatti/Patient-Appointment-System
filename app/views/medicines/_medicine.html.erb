@@ -1,17 +1,15 @@
-<div id="<%= dom_id medicine %>">
-  <p>
-    <strong>Name:</strong>
-    <%= medicine.name %>
-  </p>
-
-  <p>
-    <strong>Medicine type:</strong>
-    <%= medicine.medicine_type %>
-  </p>
-
-  <p>
-    <strong>Prescription:</strong>
-    <%= medicine.prescription_id %>
-  </p>
-
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-md-5">
+      <%= f.label :name, "Medicine Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+    <div class="col-md-5">
+      <%= f.label :medicine_type, "Type" %>
+      <%= f.text_field :medicine_type, class: "form-control" %>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <%= link_to_remove_association "Remove", f, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>
