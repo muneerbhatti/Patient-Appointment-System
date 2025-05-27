@@ -41,7 +41,7 @@
 
   <% if current_user.userable_type == "Reception" || current_user.userable_type == "Admin" || current_user.userable_type == "Doctor" %>
     </div>
-    <table id="patients-table" class="table table-bordered">
+    <table id="myTable" class="display">
       <thead>
       <tr>
         <th>ID</th>
@@ -182,3 +182,16 @@
           background-color: #3e8e41;
       }
   </style>
+
+
+  <!-- jQuery (can still be CDN or local) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Local DataTables JS -->
+<script src="DataTables/datatables.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#myTable').DataTable();
+  });
+</script>
