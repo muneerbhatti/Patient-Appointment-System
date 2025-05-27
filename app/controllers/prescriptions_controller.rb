@@ -12,19 +12,20 @@ class PrescriptionsController<ApplicationController
   end
  
 
-  @prescription = @token.prescriptions.build  # Use build instead of new
+  @prescription = @token.build_prescription
+
 end
 
-  def create
-    @token = Token.find(params[:token_id])
-    @prescription= @token.prescriptions.build(prescription_params)
+def create
+  @token = Token.find(params[:token_id])
+  @prescription = @token.build_prescription(prescription_params)
 
-    if @prescription.save
-      redirect_to token_prescriptions_path, notice: "Prescription was successfully created."
-    else
-      render :new
-    end
+  if @prescription.save
+    redirect_to token_path(@token), notice: "Prescription was successfully created."
+  else
+    render :new
   end
+end
   def edit
     @token=Token.find(params[:token_id])
     @prescription=Prescription.find(params[:id])
@@ -51,14 +52,16 @@ end
     end
   end
 def destroy
-  @token=Token.find(params[:token_id])
-    @prescription=Prescription.find(params[:id])
-     if @prescription.destroy(prescription_params) 
-      redirect_to token_prescriptions_path , notice:'Prescription have be successfully Updated!!'
-    else
-      render :all
-    end
+  @token = Token.find(params[:token_id])
+  @prescription = Prescription.find(params[:id])
+
+  if @prescription.destroy
+    redirect_to token_prescriptions_path(@token), notice: 'Prescription has been successfully deleted!'
+  else
+    render :all
   end
+end
+
   private
 
   def prescription_params

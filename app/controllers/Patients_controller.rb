@@ -48,7 +48,8 @@ end
         end
     end
     def show
-        @patient=Patient.find(params[:id])
+         @patient = Patient.find(params[:id])
+         @tokens = @patient.tokens.includes(:prescription)
     end
 
 def destroy

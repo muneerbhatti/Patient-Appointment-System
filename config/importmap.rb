@@ -10,6 +10,7 @@ pin "bootstrap", to: "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstr
 pin "admin-lte", to: "https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"
 pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 pin "vanilla-nested", to: "vanilla_nested.js", preload: true
+pin "@rails/ujs", to: "@rails--ujs.js" # @7.1.3
 
 
 

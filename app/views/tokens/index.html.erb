@@ -33,7 +33,7 @@
       <th>Doctor</th>
       <th>Patient</th>
       <th>Payment Status</th>
-      <th>Payment Type</th>
+      <th>Token Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -57,8 +57,8 @@
         <td>
           <% if token.payment.present? %>
             <span class="badge <%= status_label_class(token.payment.status)  if token.payment.present?%>">
-              <%= token.payment.status %>
-              <p>Paid</p>
+             <p>paid</p>
+              
               <%else%>
 
               <strong class="lead">Padding</strong>
@@ -72,18 +72,31 @@
       
         </td>
         <td>
+          <% case token.status %>
+          <% when "pending" %>
+            <span style="color: orange;">Pending</span>
+          <% when "completed" %>
+            <span style="color: green;">Completed</span>
+          <% when "canceled" %>
+            <span style="color: red;">Canceled</span>
+          <% else %>
+            Unknown
+          <% end %>
+        </td>
+        
+        <td>
           <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" || current_user.userable_type == "Admin" %>
             <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
           <% end %>
 
           <% if current_user.userable_type == "Doctor" %>
           <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-sm' %>
-            <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
-            <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-success btn-sm" %>
+          <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
+          <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-success btn-sm" %>
           <% elsif current_user.userable_type == "Patient" || current_user.userable_type == "Reception" %>
             <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-sm' %>
             <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-sm" %>
-            <%= link_to 'Delete', token_path(token), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            <%= button_to 'Delete', token_path(token), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
             <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
           <% end %>
         </td>
@@ -91,7 +104,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 
     </div>

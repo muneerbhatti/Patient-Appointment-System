@@ -19,12 +19,24 @@
           <%= form.text_field :Weight, class: 'form-control form-control-lg' %>
         </div>
       </div>
+      <%if current_user.userable_type=="Reception"%>
       <div class="col-lg-5">
+        
         <div class="form-group">
           <%= form.label :doctor_id, "Select Doctor", class: 'mb-3' %>
           <%= form.select :doctor_id, options_from_collection_for_select(Doctor.all, :id, ->(d) { "#{d.Name} - #{d.Specialization}" }), { prompt: "Choose a doctor" }, class: "form-control form-control-lg" %>
         </div>
       </div>
+      <% else%>
+      <!-- Display doctor name as read-only -->
+<div class="form-group">
+  <%= label_tag :doctor_name, "Doctor" %>
+ 
+</div>
+
+<!-- Hidden field to submit doctor_id -->
+<%= form.hidden_field :doctor_id, value: @doctor.id %>
+<%end%>
 
       <% if current_user.userable_type == "Patient" %>
         <%= form.hidden_field :patient_id, value: current_user.userable.id %>

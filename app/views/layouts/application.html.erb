@@ -22,11 +22,11 @@
 
   <%= javascript_importmap_tags %>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <!-- Bootstrap JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css" />
 <body class="skin-blue  wysihtml5-supported">
 <div class="wrapper">
 
@@ -40,7 +40,7 @@
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
   <%= yield %>
-
+<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
 </div>
 <%= render 'shared/footer' %>
 </body>

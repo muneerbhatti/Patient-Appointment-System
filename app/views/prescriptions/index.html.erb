@@ -23,13 +23,14 @@
 		 	<td><%=prescription.formula%></td>
 		 	<td><%=prescription.token_id %></td>
 		 	<td>
-		 		<%= link_to "Edit", edit_token_prescription_path(token_id: prescription.token_id, id: prescription.id), class: 'btn btn_primary btn-lg' %>
-		 		<%=link_to "Show", token_prescription_path(token_id:prescription.token_id,id:prescription.id), class:'btn btn_info btn-lg'%>
-                 <%=link_to "Delete",token_prescription_path(token_id:prescription.token_id,id:prescription.id) ,class:" btn btn-danger btn-lg"  %>
+		 		<%= link_to "Edit", edit_token_prescription_path(token_id: prescription.token_id, id: prescription.id), class: 'btn btn_primary btn_sm' %>
+		 		<%=link_to "Show", token_prescription_path(token_id:prescription.token_id,id:prescription.id), class:'btn btn_info btn_sm'%>
+<%= button_to "Delete", token_prescription_path(token_id: prescription.token_id, id: prescription.id), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this prescription?" },  class: "btn btn-danger btn-sm" %>
+
                 <%= link_to "Print", token_prescription_path(token_id: prescription.token_id, id: prescription.id, format: :pdf), class: "btn btn-success btn-sm" %>
 
 		 	</td>
-		 	
+		 
 		 </tr>
 		 <%end%>
 		</tbody>
