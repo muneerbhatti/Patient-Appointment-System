@@ -22,6 +22,8 @@ import "./pas/dashboard.js"
 import "./pas/demo.js"
 import "vanilla-nested";
 import "bootstrap"
+import { start } from "@rails/request.js"
+start()
 
 
 //= require rails-ujs

@@ -43,7 +43,7 @@
             <td>
               <div class="dropdown">
                 <button class="dropbtn">Actions</button>
-                <div class="dropdown-content">
+                <div class="dropbtn">
                   <%= link_to "Edit", edit_patient_path(patient), class: "dropdown-item btn-primary" %>
                   <%= link_to "Show", patient_path(patient), class: "dropdown-item btn-info" %>
                   <%= button_to "Delete", patient_path(patient), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "dropdown-item btn-danger" %>

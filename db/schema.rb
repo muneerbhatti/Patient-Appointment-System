@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_03_065123) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_30_110038) do
   create_table "admins", force: :cascade do |t|
     t.string "Name"
     t.string "email"
@@ -90,6 +90,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_03_065123) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
+    t.datetime "appointment_time"
     t.index ["doctor_id"], name: "index_tokens_on_doctor_id"
     t.index ["patient_id"], name: "index_tokens_on_patient_id"
   end

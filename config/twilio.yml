@@ -1,0 +1,4 @@
+twilio:
+  account_sid: ACXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  auth_token: your_twilio_auth_token
+  phone_number: "+92XXXXXXXXXX"  # Pakistani Twilio number

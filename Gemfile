@@ -63,3 +63,7 @@ gem 'pundit', '~> 2.5'
 gem 'vanilla_nested'
 gem "letter_opener", group: :development
 gem  'jquery-rails'
+gem 'twilio-ruby', '~> 7.6.2'
+gem 'dotenv-rails', groups: [:development, :test]
+
+

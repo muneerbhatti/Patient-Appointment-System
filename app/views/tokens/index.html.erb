@@ -71,34 +71,31 @@
           <%end%>
       
         </td>
-        <td>
-          <% case token.status %>
-          <% when "pending" %>
-            <span style="color: orange;">Pending</span>
-          <% when "completed" %>
-            <span style="color: green;">Completed</span>
-          <% when "canceled" %>
-            <span style="color: red;">Canceled</span>
-          <% else %>
-            Unknown
-          <% end %>
-        </td>
+
         
         <td>
-          <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" || current_user.userable_type == "Admin" %>
-            <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
-          <% end %>
+     
+<div class="dropdown">
+  <button class="dropbtn">Actions</button>
+  <div class="dropdown-content">
+    <% if current_user.userable_type == "Reception" || current_user.userable_type == "Patient" || current_user.userable_type == "Admin" %>
+      <%= link_to "Make Payment", new_payment_path(token_id: token.id), class: "btn btn-success btn-sm" %>
+    <% end %>
 
-          <% if current_user.userable_type == "Doctor" %>
-          <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-sm' %>
-          <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
-          <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: "btn btn-success btn-sm" %>
-          <% elsif current_user.userable_type == "Patient" || current_user.userable_type == "Reception" %>
-            <%= link_to "Edit", edit_token_path(token), class: 'btn btn-info btn-sm' %>
-            <%= link_to "Print", token_path(token, format: :pdf), class: "btn btn-primary btn-sm" %>
-            <%= button_to 'Delete', token_path(token), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
-            <%= link_to 'Show', token_path(token), class: 'btn btn-primary btn-sm' %>
-          <% end %>
+    <% if current_user.userable_type == "Doctor" %>
+      <%= link_to "Edit", edit_token_path(token), class: 'dropdwon-item btn-primary' %>
+      <%= link_to 'Show', token_path(token), class: 'dropdwon-item btn-primary' %>
+      <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: 'dropdwon-item btn-primary' %>
+    <% elsif current_user.userable_type == "Patient" || current_user.userable_type == "Reception" %>
+      <%= link_to "Edit", edit_token_path(token), class: 'dropdwon-item btn-primary' %>
+      <%= link_to "Print", token_path(token, format: :pdf), class: 'dropdwon-item btn-primary' %>
+      P
+      <%= link_to 'Show', token_path(token), class: 'dropdwon-item btn-primary' %>
+    <% end %>
+  </div>
+</div>
+
+
         </td>
       </tr>
     <% end %>
@@ -110,6 +107,47 @@
 
     </div>
     <style>
+      .dropdown{
+        position: relative;
+        display: inline-block;
+      }
+      .dropbtn{
+        background-color: green;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+      }
+
+
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 100px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+      }
+
+      .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+      }
+
+      .dropdown-content a:hover {
+          background-color: #ddd;
+      }
+
+      .dropdown:hover .dropdown-content {
+          display: block;
+      }
+
+      .dropdown:hover .dropbtn {
+          background-color: #3e8e41;
+      }
+
 
         .abc {
             padding: 34px;

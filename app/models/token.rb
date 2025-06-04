@@ -9,9 +9,20 @@ class Token < ApplicationRecord
 before_create :set_pending_status
 
 after_create :check_prescription_status
-
+after_create :send_sms_confirmation
 
 private 
+
+
+  def send_sms_confirmation
+    SmsSender.send_sms(
+      to: patient.PhoneNo, # Make sure this is in international format like +92300...
+      body: "Dear #{patient.Name}, your appointment with Dr. #{doctor.Name} is confirmed }."
+    )
+  end
+
+# for #{appointment_time.strftime('%A %d %B at %I:%M %p')
+
 
 def set_pending_status
   self.status= 'pending'

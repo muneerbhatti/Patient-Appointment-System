@@ -16,7 +16,13 @@ class TokensController < ApplicationController
          @tokens = Token.includes(:patient, :prescription).all
     end
   end
-
+def create
+    # your appointment creation logic
+    TwilioSender.send_sms(
+      to: appointment.phone_number,
+      body: "Your appointment is confirmed for #{appointment.date}"
+    )
+  end
  def new
   if current_user.role == "patient"
     if params[:doctor_id].present?
@@ -76,14 +82,11 @@ end
     @token = Token.find(params[:id])
   end
 
-  def destroy
-    @token = Token.find(params[:id])
-    if @token.destroy(params_token)
-      redirect_to tokens_path, notice: 'Token was successfully Updated!!...  '
-    else
-      render :all
-    end
-  end
+def destroy
+  token = Token.find(params[:id])
+  token.destroy
+  redirect_to tokens_path, notice: "Token was successfully deleted."
+end
 
   private
 
