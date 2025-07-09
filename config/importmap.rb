@@ -11,6 +11,10 @@ pin "admin-lte", to: "https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js
 pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 pin "vanilla-nested", to: "vanilla_nested.js", preload: true
 pin "@rails/ujs", to: "@rails--ujs.js" # @7.1.3
+pin "jquery", to: "https://ga.jspm.io/npm:jquery@3.7.1/dist/jquery.js"
+
+pin "@nathanvda/cocoon", to: "https://ga.jspm.io/npm:@nathanvda/cocoon@1.2.14/index.js"
+
 
 
 

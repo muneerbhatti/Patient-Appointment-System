@@ -16,27 +16,23 @@ private
 
   def send_sms_confirmation
     SmsSender.send_sms(
-      to: patient.PhoneNo, # Make sure this is in international format like +92300...
+      to: patient.PhoneNo, 
       body: "Dear #{patient.Name}, your appointment with Dr. #{doctor.Name} is confirmed }."
     )
   end
 
-# for #{appointment_time.strftime('%A %d %B at %I:%M %p')
 
-
-def set_pending_status
-  self.status= 'pending'
+  def set_pending_status
+    self.status = 'pending'
   end
 
-  def check_prescription_status 
-  if prescription&.presend?
-    update(status: 'completed')
-  else
-    update(status: 'canceled')
+  def check_prescription_status
+    if prescription&.presend?
+      update(status: 'completed')
+    else
+      update(status: 'canceled')
+    end
   end
-end
-
-
 
 
 

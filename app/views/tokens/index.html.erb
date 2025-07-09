@@ -71,7 +71,18 @@
           <%end%>
       
         </td>
-
+        <td>
+          <% case token.status %>
+          <% when "pending" %>
+            <span style="color: orange;">Pending</span>
+          <% when "completed" %>
+            <span style="color: green;">Completed</span>
+          <% when "canceled" %>
+            <span style="color: red;">Canceled</span>
+          <% else %>
+            Unknown
+          <% end %>
+        </td>
         
         <td>
      
@@ -84,12 +95,12 @@
 
     <% if current_user.userable_type == "Doctor" %>
       <%= link_to "Edit", edit_token_path(token), class: 'dropdwon-item btn-primary' %>
-      <%= link_to 'Show', token_path(token), class: 'dropdwon-item btn-primary' %>
+      <%= link_to 'Show', token_path(token), class: 'dropdwon-item btn-info' %>
       <%= link_to "Prescriptions", new_token_prescription_path(token.id), class: 'dropdwon-item btn-primary' %>
     <% elsif current_user.userable_type == "Patient" || current_user.userable_type == "Reception" %>
       <%= link_to "Edit", edit_token_path(token), class: 'dropdwon-item btn-primary' %>
       <%= link_to "Print", token_path(token, format: :pdf), class: 'dropdwon-item btn-primary' %>
-      P
+      <%= button_to 'Delete', token_path(token), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'dropdwon-item btn-danger btn-lg' %>
       <%= link_to 'Show', token_path(token), class: 'dropdwon-item btn-primary' %>
     <% end %>
   </div>

@@ -65,5 +65,7 @@ gem "letter_opener", group: :development
 gem  'jquery-rails'
 gem 'twilio-ruby', '~> 7.6.2'
 gem 'dotenv-rails', groups: [:development, :test]
+gem "cocoon"
+gem 'jquery-rails'
 
 

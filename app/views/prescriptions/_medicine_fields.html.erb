@@ -1,5 +1,9 @@
-<div class="wrapper-div">
-<%= form.text_field :name %>
-<%= link_to_remove_nested(form) %>
-</div>
+<div class="nested-fields">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
+  <%= f.label :medicine_type %>
+  <%= f.text_field :medicine_type %>
+
+  <%= link_to_remove_association "Remove", f %>
+</div>

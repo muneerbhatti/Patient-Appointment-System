@@ -24,6 +24,10 @@ import "vanilla-nested";
 import "bootstrap"
 import { start } from "@rails/request.js"
 start()
+import "jquery"
+import "cocoon-js";
+import '@nathanvda/cocoon'
+
 
 
 //= require rails-ujs
